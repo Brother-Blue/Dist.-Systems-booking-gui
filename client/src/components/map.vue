@@ -57,7 +57,7 @@ export default {
                 }
             },
             dentistStyles: {
-                url: require('../assets/dental-location.svg'),
+                url: require('../assets/dentist-icon.svg'),
                 scaledSize: {
                     width: 50,
                     height: 50,
