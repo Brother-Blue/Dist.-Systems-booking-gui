@@ -18,9 +18,7 @@
         <GmapMarker
         v-for="(r, index) in offices"
         :key="index"
-        :position="{
-        lat: r.coordinate.latitude,
-        lng: r.coordinate.longitude}"
+        :position="r.coordinate"
         :clickable="true"
         :draggable="false"
         @click="toggleInfoWindow(r,index)"
@@ -40,6 +38,7 @@
 
 <script>
 export default {
+    props: ['offices'],
     data() {
         return {
             zoom: 12,
@@ -60,324 +59,262 @@ export default {
             dentistStyles: {
                 url: require('../assets/dental-location.svg'),
                 scaledSize: {
-                    width: 500,
-                    height: 500,
+                    width: 50,
+                    height: 50,
                     f: 'px',
                     b: 'px'
                 }
             },
-            offices: [
-                {
-                    id: 1,
-                    name: "Your Dentist",
-                    owner: "Dan Tist",
-                    dentists: 1,
-                    address: "Spannmålsgatan 20",
-                    city: "Gothenburg",
-                    coordinate: {
-                        latitude: 11.969388,
-                        longitude: 57.707619
-                    },
-                    openinghours: {
-                        monday: "9:00-17:00",
-                        tuesday: "8:00-17:00",
-                        wednesday: "7:00-16:00",
-                        thursday: "9:00-17:00",
-                        friday: "9:00-15:00"
-                    }
-                },
-                {
-                    id: 2,
-                    name: "Tooth Fairy Dentist",
-                    owner: "Tooth Fairy",
-                    dentists: 1,
-                    address: "Slottskogen",
-                    city: "Gothenburg",
-                    coordinate: {
-                        latitude: 11.942625,
-                        longitude: 57.685255
-                    },
-                    openinghours: {
-                        monday: "7:00-19:00",
-                        tuesday: "7:00-19:00",
-                        wednesday: "7:00-19:00",
-                        thursday: "7:00-19:00",
-                        friday: "7:00-19:00"
-                    }
-                },
-                {
-                    id: 3,
-                    name: "The Crown",
-                    owner: "Carmen Corona",
-                    dentists: 1,
-                    address: "Lindholmsallén 19",
-                    city: "Gothenburg",
-                    coordinate: {
-                        latitude: 11.940386,
-                        longitude: 57.709872
-                    },
-                    openinghours: {
-                        monday: "6:00-15:00",
-                        tuesday: "8:00-17:00",
-                        wednesday: "7:00-12:00",
-                        thursday: "7:00-17:00",
-                        friday: "8:00-16:00"
-                    },
-                }
-            ],
             mapStyles: [
                 {
-                    elementType: 'geometry',
+                    elementType: "geometry",
                     stylers: [
                         {
-                            color: '#242f3e'
+                            color: "#ebe3cd"
                         }
                     ]
                 },
-                {   
-                    elementType: 'labels',
+                {
+                    elementType: "labels.text.fill",
                     stylers: [
                         {
-                            visibility: 'off'
+                            color: "#523735"
                         }
                     ]
                 },
-            {
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#746855'
-                    }
-                ]
-            },
-            {
-                elementType: 'labels.text.stroke',
-                stylers: [
-                    {
-                        color: '#242f3e'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.country',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.land_parcel',
-                stylers: [
-                    {
-                        visibility: 'off'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.locality',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#d59563'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.neighborhood',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'administrative.province',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#d59563'
-                    }
-                ]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [
-                    {
-                        color: '#263c3f'
-                    }
-                ]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#6b9a76'
-                    }
-                ]
-            },
-            {
-                featureType: 'road',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [
-                    {
-                        color: '#38414e'
-                    }
-                ]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry.stroke',
-                stylers: [
-                    {
-                        color: '#212a37'
+                {
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#f5f1e6"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#c9b2a6"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative.land_parcel",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#dcd2be"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative.land_parcel",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#ae9e90"
+                        }
+                    ]
+                },
+                {
+                    featureType: "landscape.natural",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [
+                        {
+                            visibility: "off"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#93817c"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "geometry.fill",
+                    stylers: [
+                        {
+                            color: "#a5b076"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#447530"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#f5f1e6"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.arterial",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#fdfcf8"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#f8c967"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#e9bc62"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway.controlled_access",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#e98d58"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway.controlled_access",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#db8555"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.local",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#806b63"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.line",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.line",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#8f7d77"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.line",
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#ebe3cd"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.station",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry.fill",
+                    stylers: [
+                        {
+                            color: "#b9d3c2"
+                        }
+                    ]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#92998d"
+                        }
+                    ]
                 }
             ]
-            },
-            {
-                featureType: 'road',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#9ca5b3'
-                }
-            ]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [
-                    {
-                        color: '#746855'
-                    }
-                ]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry.stroke',
-                stylers: [
-                    {
-                        color: '#1f2835'
-                    }
-                ]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#f3d19c'
-                    }
-                ]
-            },
-            {
-                featureType: 'transit',
-                stylers: [
-                    {
-                        visibility: 'on'
-                    }
-                ]
-            },
-            {
-                featureType: 'transit',
-                elementType: 'geometry',
-                stylers: [
-                    {
-                        color: '#2f3948'
-                    }
-                ]
-            },
-            {
-                featureType: 'transit.station',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#d59563'
-                    }
-                ]
-            },
-            {
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [
-                    {
-                        color: '#17263c'
-                    }
-                ]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.fill',
-                stylers: [
-                    {
-                        color: '#515c6d'
-                    }
-                ]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.stroke',
-                stylers: [
-                    {
-                        color: '#17263c'
-                    }
-                ]
-            }
-        ]
         }
     },
     methods: {
-            // Show info window based on which bar pressed
-    toggleInfoWindow: function (offices, idx) {
-      this.infoWindowPos = {
-        lat: offices.coordinate.latitude,
-        lng: offices.coordinate.longitude
-      }
-      this.infoOptions.content = this.getInfoWindowContent(offices)
+            // Show info window based on which office pressed
+            toggleInfoWindow: function (offices, idx) {
+                this.infoWindowPos = offices.coordinate
 
-      // If same bar is clicked, close window. Else open
-      if (this.currentMidx === idx) {
-        this.infoWinOpen = !this.infoWinOpen
-      } else {
-        this.infoWinOpen = true
-        this.currentMidx = idx
-      }
-    },
-    getInfoWindowContent: function (offices) {
-      return (`  <div>
-  <div>
-    <p></p>
-    <h6><b>${offices.name}</b></h6>
-    <p>${offices.address}</p>
-  </div>
-</div>`)
-    }
+                this.infoOptions.content = this.getInfoWindowContent(offices)
+
+                // If same office is clicked, close window. Else open
+                if (this.currentMidx === idx) {
+                    this.infoWinOpen = !this.infoWinOpen
+                } else {
+                    this.infoWinOpen = true
+                    this.currentMidx = idx
+                }
+            },
+            getInfoWindowContent: function (offices) {
+                return (`  <div>
+                    <div>
+                    <p></p>
+                    <h6><b>${offices.name}</b></h6>
+                    <p>${offices.address}</p>
+                    </div>
+                    </div>`)
+            }
     }
 }
 </script>
