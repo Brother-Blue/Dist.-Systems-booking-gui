@@ -10,7 +10,11 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vue2-google-maps": "^0.10.7"
+    "vue2-google-maps": "^0.10.7",
+    "bootstrap": "^4.5.2",
+    "bootstrap-vue": "^2.16.0",
+    "vue-router": "^3.4.3"
+
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
