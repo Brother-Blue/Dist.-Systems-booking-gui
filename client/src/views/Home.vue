@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
     <div id="map-div">
         <Map ref="Map"/>
     </div>
@@ -8,14 +7,12 @@
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld.vue'
 import Map from '../components/map.vue'
 
 export default {
   name: 'Home',
   components: {
-    Map,
-    HelloWorld
+    Map
   }
 }
 </script>
