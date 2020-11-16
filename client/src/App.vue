@@ -6,6 +6,10 @@
 </template>
 
 <script>
+
+// This page is not actually used for anything as of now,
+// But it was the first page we tested on.
+
 import HelloWorld from './components/HelloWorld.vue'
 import Map from './components/map.vue'
 

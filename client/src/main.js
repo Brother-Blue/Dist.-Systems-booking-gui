@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Home from './views/Home.vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.config.productionTip = false
@@ -10,5 +10,5 @@ Vue.use(VueGoogleMaps, {
 })
 
 new Vue({
-  render: h => h(App),
+  render: h => h(Home),
 }).$mount('#app')
