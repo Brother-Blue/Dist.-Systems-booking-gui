@@ -3,7 +3,7 @@
     <GmapMap
     ref="mapRef"
     :center="centerLocation"
-    style="height:40%; width:100%; position:fixed; bottom: 0;"
+    style="height:50%; width:100%; position:fixed; bottom: 0;"
     :zoom="zoom"
     :options="{
         zoomControl: true,
