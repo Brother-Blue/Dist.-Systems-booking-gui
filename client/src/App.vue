@@ -5,7 +5,7 @@
       
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button id="search-button" type="button" class="btn btn-outline-light">Light</button>
+        <button id="search-button" type="button" class="btn btn-outline-light">Search</button>
       </form>
     </nav>
     <router-view/>
@@ -44,7 +44,7 @@ export default {
   font-family: 'Libre Baskerville', serif;
 }
 
-#search-button :hover {
+.btn:hover {
   color:#e98d58;
 }
 

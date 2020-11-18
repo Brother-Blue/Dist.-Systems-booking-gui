@@ -3,7 +3,9 @@
     <div id="map-div">
         <p id="dentisimo" class="headlines"> Dentisimo</p>
         <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
-        <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <b-button id="book">BOOK A TIME</b-button>
+        <p id="or">or</p>
+        <p id="find">FIND US HERE</p>
         <Map ref="Map"
         :offices="offices"/>
     </div>
@@ -114,6 +116,33 @@ export default {
 
 #available {
   font-size: 25px;
+}
+
+#book {
+  border-radius: 30px;
+  margin-top: 2.25em;
+  padding: 18px 50px;
+  background-color:#e98d58;
+  border: #e98d58;
+  font-size: 20px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+#book:hover {
+  color: rgb(57, 77, 41);
+}
+
+p {
+  font-family: 'Libre Baskerville', serif;
+}
+
+#or {
+  margin-top: 1em;
+  font-size: 20px;
+}
+
+#find {
+  font-size: 22px;
 }
 
 </style>
