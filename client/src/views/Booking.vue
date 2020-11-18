@@ -1,22 +1,23 @@
 <template>
   <div id="home">
-    <div id="nav">
-      <router-link to="/" class="link">Home</router-link> |
-      <!-- This is only to test it works, will remove later-->
-      <router-link to="/Booking" class="link">Booking</router-link>
+    <div id="map-div">
+        <h1> Book a time!</h1>
+        <TimeBooker/>
     </div>
-    <!-- Render the content of the current page view -->
-    <router-view/>
   </div>
 </template>
 
 <script>
+import TimeBooker from '../components/TimeBooker.vue'
 
 export default {
-  name: 'App',
+  name: 'Booking',
   components: {
+    TimeBooker
   },
   data() {
+    return {
+    }
   }
 }
 </script>
