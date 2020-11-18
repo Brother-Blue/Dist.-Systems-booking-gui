@@ -57,7 +57,7 @@ export default {
                 }
             },
             dentistStyles: {
-                url: require('../assets/dental-location.svg'),
+                url: require('../assets/dentist-icon.svg'),
                 scaledSize: {
                     width: 50,
                     height: 50,
@@ -307,12 +307,10 @@ export default {
                 }
             },
             getInfoWindowContent: function (offices) {
-                return (`  <div>
+                return (`  
                     <div>
-                    <p></p>
-                    <h6><b>${offices.name}</b></h6>
-                    <p>${offices.address}</p>
-                    </div>
+                        <h3><b>${offices.name}</b></h3>
+                        <p style="font-size:16px;">${offices.address}</p>
                     </div>`)
             }
     }
