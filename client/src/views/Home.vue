@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div id="map-div">
-        <p id="dentisimo" class="headlines"> Dentisimo</p>
+        <p id="dentisimo" class="headlines"> Dentistsimo</p>
         <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
         <b-button id="book">BOOK A TIME</b-button>
         <p id="or">or</p>

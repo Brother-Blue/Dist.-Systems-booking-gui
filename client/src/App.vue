@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav id="navbar" class="navbar navbar-light justify-content-between" style="background-color: #e98d58;">
-      <a id="navbar-text" class="navbar-brand">Dentisimo</a>
+      <a id="navbar-text" class="navbar-brand">Dentistimo</a>
       
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
