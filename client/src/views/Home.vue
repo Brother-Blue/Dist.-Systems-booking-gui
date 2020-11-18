@@ -1,14 +1,19 @@
 <template>
   <div id="home">
-    <div id="map-div">
-        <p id="dentisimo" class="headlines"> Dentistsimo</p>
-        <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
-        <b-button id="book">BOOK A TIME</b-button>
-        <p id="or">or</p>
-        <p id="find">FIND US HERE</p>
-        <Map ref="Map"
-        :offices="offices"/>
-    </div>
+    <b-col>
+      <p id="dentisimo" class="headlines"> Dentistimo</p>
+      <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
+      <b-button id="book" v-bind:href="'/booking/'">BOOK A TIME</b-button>
+      <p id="or">or</p>
+      <p id="find">FIND US HERE</p>
+    
+      <b-row align-h="left">
+        <div id="map-div">
+          <Map id="map" ref="Map"
+          :offices="offices"/>
+        </div>
+      </b-row>
+    </b-col>
   </div>
 </template>
 
@@ -143,6 +148,13 @@ p {
 
 #find {
   font-size: 22px;
+}
+
+.b-container fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 </style>
