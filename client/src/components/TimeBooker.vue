@@ -1,8 +1,8 @@
 <template>
   <div class="TimeBooker">
-      <vue-good-table
-        :columns="columns"
-        :rows="rows"/>
+      <b-table striped hover
+      :items="offices"
+      :fields="fields"/>
   </div>
 </template>
 
@@ -12,29 +12,26 @@ export default {
   props: ['offices'],
   data() {
       return {
-          columns: [{
-                label: 'Monday',
-                field: 'monday'
+          fields: [{
+                key: 'openinghours.monday',
+                label: 'Monday'
             },
             {
-                label: 'Tuesday',
-                field: 'tuesday'
+                key: 'openinghours.tuesday',
+                label: 'Tuesday'
             },
             {
-                label: 'Wednesday',
-                field: 'wednesday'
+                key: 'openinghours.wednesday',
+                label: 'Wednesday'
             },
             {
-                label: 'Thursday',
-                field: 'thursday',
+                key: 'openinghours.thursday',
+                label: 'Thursday'
             },
             {
+                key: 'openinghours.friday',
                 label: 'Friday',
-                field: 'friday'
             }
-          ],
-          rows: [
-             { monday: "09:00-17:00", tuesday:"09:00-17:00", wednesday:"09:00-17:00", thursday:"09:00-17:00", friday:"09:00-17:00"}
           ],
       }
   }
