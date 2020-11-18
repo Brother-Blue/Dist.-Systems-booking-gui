@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/" class="link">Home</router-link> |
-      <!-- This is only to test it works, will remove later-->
-      <router-link to="/Booking" class="link">Booking</router-link>
-    </div>
-    <!-- Render the content of the current page view -->
+    <nav id="navbar" class="navbar navbar-light justify-content-between" style="background-color: #e98d58;">
+      <a id="navbar-text" class="navbar-brand">Dentisimo</a>
+      
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button id="search-button" type="button" class="btn btn-outline-light">Light</button>
+      </form>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -22,13 +24,11 @@ export default {
 </script>
 
 <style>
-#home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+
+#navbar {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #available {
@@ -38,4 +38,14 @@ export default {
 #decription {
     margin: 2em;
 }
+
+#navbar-text {
+  color: #fff;
+  font-family: 'Libre Baskerville', serif;
+}
+
+#search-button :hover {
+  color:#e98d58;
+}
+
 </style>
