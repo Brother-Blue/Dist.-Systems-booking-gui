@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import router from './router'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueGoodTablePlugin from 'vue-good-table';
+import 'vue-good-table/dist/vue-good-table.css'
+
 import App from './App.vue'
 
 Vue.config.productionTip = false
+
+Vue.use(VueGoodTablePlugin);
 
 Vue.use(VueGoogleMaps, {
   load: {
