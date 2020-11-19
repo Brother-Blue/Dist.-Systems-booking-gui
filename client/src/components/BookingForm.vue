@@ -1,13 +1,10 @@
 <template>
 <b-container>
+
+    <h2> Contact a Clinic: </h2>
+
   <div class="bookingform">
       <b-form>
-      
-      <b-form-group
-        id="input-group-1"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
-      >
 
       <b-row id="email-row" align-h="center">
       <b-col cols="2">
@@ -24,7 +21,6 @@
         ></b-form-input>
       </b-col>
       </b-row>
-      </b-form-group>
 
         <b-row id="fname-row" align-h="center">
         <b-col cols="2">
@@ -69,8 +65,7 @@
         </b-col>
         </b-row>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button id="contact" type="submit" variant="primary">Submit</b-button>
     </b-form>
   </div>
 </b-container>
@@ -93,10 +88,6 @@
 
 <style scoped>
 
-#email {
-    margin-top: 0.5em;
-}
-
 #email-row {
     padding-top: 1em;
 }
@@ -111,6 +102,25 @@
 
 #ssn-row {
     padding-top: 1em;
+}
+
+h2 {
+    padding-top: 2em;
+    padding-bottom: 0.5em;
+}
+
+#contact {
+  border-radius: 30px;
+  margin-top: 0.5em;
+  padding: 10px 40px;
+  background-color:#e98d58;
+  border: #e98d58;
+  font-size: 20px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+#contact:hover {
+  color: rgb(57, 77, 41);
 }
 
 </style>
