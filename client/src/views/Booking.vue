@@ -1,20 +1,27 @@
 <template>
   <div id="home">
-    <div id="map-div">
+    <div id="table-div">
         <h1> Book a time!</h1>
         <TimeBooker
+        id="table"
         :offices="offices"/>
+    </div>
+    <div id="form-div">
+      <BookingForm
+      id="form"/>
     </div>
   </div>
 </template>
 
 <script>
 import TimeBooker from '../components/TimeBooker.vue'
+import BookingForm from '../components/BookingForm.vue'
 
 export default {
   name: 'Booking',
   components: {
-    TimeBooker
+    TimeBooker,
+    BookingForm
   },
   data() {
     return {
@@ -85,7 +92,7 @@ export default {
 
 <style>
 #home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Libre Baskerville', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -100,4 +107,14 @@ export default {
 #decription {
     margin: 2em;
 }
+
+h1 {
+  padding-bottom: 1.5em;
+}
+
+#table {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
 </style>

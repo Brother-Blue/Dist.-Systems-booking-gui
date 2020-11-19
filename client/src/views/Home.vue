@@ -1,12 +1,19 @@
 <template>
   <div id="home">
-    <div id="map-div">
-        <h1> Dentisimo</h1>
-        <h4>Your <span id="available"> available </span> local dentist office</h4>
-        <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <Map ref="Map"
-        :offices="offices"/>
-    </div>
+    <b-col>
+      <p id="dentisimo" class="headlines"> Dentistimo</p>
+      <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
+      <b-button id="book" v-bind:href="'/booking/'">BOOK A TIME</b-button>
+      <p id="or">or</p>
+      <p id="find">FIND US HERE</p>
+    
+      <b-row align-h="left">
+        <div id="map-div">
+          <Map id="map" ref="Map"
+          :offices="offices"/>
+        </div>
+      </b-row>
+    </b-col>
   </div>
 </template>
 
@@ -85,8 +92,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+
 #home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -101,4 +110,51 @@ export default {
 #decription {
     margin: 2em;
 }
+
+.headlines {
+  font-family: 'Libre Baskerville', serif;
+}
+
+#dentisimo {
+  font-size: 60px;
+}
+
+#available {
+  font-size: 25px;
+}
+
+#book {
+  border-radius: 30px;
+  margin-top: 2.25em;
+  padding: 18px 50px;
+  background-color:#e98d58;
+  border: #e98d58;
+  font-size: 20px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+#book:hover {
+  color: rgb(57, 77, 41);
+}
+
+p {
+  font-family: 'Libre Baskerville', serif;
+}
+
+#or {
+  margin-top: 1em;
+  font-size: 20px;
+}
+
+#find {
+  font-size: 22px;
+}
+
+.b-container fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 </style>
