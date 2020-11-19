@@ -1,21 +1,27 @@
 <template>
   <div id="home">
-    <div id="map-div">
+    <div id="table-div">
         <h1> Book a time!</h1>
         <TimeBooker
         id="table"
         :offices="offices"/>
+    </div>
+    <div id="form-div">
+      <BookingForm
+      id="form"/>
     </div>
   </div>
 </template>
 
 <script>
 import TimeBooker from '../components/TimeBooker.vue'
+import BookingForm from '../components/BookingForm.vue'
 
 export default {
   name: 'Booking',
   components: {
-    TimeBooker
+    TimeBooker,
+    BookingForm
   },
   data() {
     return {
