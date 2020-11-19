@@ -1,8 +1,8 @@
 <template>
   <div class="TimeBooker">
-      <vue-good-table
-        :columns="columns"
-        :rows="rows"/>
+      <b-table bordered medium responsive striped hover
+      :items="offices"
+      :fields="fields" id="table" align-h="center"/>
   </div>
 </template>
 
@@ -12,29 +12,30 @@ export default {
   props: ['offices'],
   data() {
       return {
-          columns: [{
-                label: 'Monday',
-                field: 'monday'
+          fields: [{
+                key: 'name',
+                label: 'Office'
             },
             {
-                label: 'Tuesday',
-                field: 'tuesday'
+                key: 'openinghours.monday',
+                label: 'Monday'
             },
             {
-                label: 'Wednesday',
-                field: 'wednesday'
+                key: 'openinghours.tuesday',
+                label: 'Tuesday'
             },
             {
-                label: 'Thursday',
-                field: 'thursday',
+                key: 'openinghours.wednesday',
+                label: 'Wednesday'
             },
             {
+                key: 'openinghours.thursday',
+                label: 'Thursday'
+            },
+            {
+                key: 'openinghours.friday',
                 label: 'Friday',
-                field: 'friday'
             }
-          ],
-          rows: [
-             { monday: "09:00-17:00", tuesday:"09:00-17:00", wednesday:"09:00-17:00", thursday:"09:00-17:00", friday:"09:00-17:00"}
           ],
       }
   }
@@ -42,14 +43,4 @@ export default {
 </script>
 
 <style scoped>
-
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 15px;
-}
-
 </style>
