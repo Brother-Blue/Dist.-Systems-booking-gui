@@ -12,8 +12,7 @@
     "bootstrap-vue": "^2.19.0",
     "core-js": "^3.6.5",
     "mqtt": "^4.2.5",
-    "vue": "^2.6.12",
-    "vue-good-table": "^2.21.1",
+    "vue": "^2.6.11",
     "vue-router": "^3.4.3",
     "vue2-google-maps": "^0.10.7"
   },

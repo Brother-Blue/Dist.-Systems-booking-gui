@@ -12,8 +12,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
 
-Vue.use(VueGoodTablePlugin);
-
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyACwSQoJfqy-dJ5rbYmiKOdqYFu8-k8S0Y', // TODO: put in env file
