@@ -3,6 +3,7 @@
     <div id="map-div">
         <h1> Book a time!</h1>
         <TimeBooker
+        id="table"
         :offices="offices"/>
     </div>
   </div>
@@ -85,7 +86,7 @@ export default {
 
 <style>
 #home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Libre Baskerville', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -100,4 +101,14 @@ export default {
 #decription {
     margin: 2em;
 }
+
+h1 {
+  padding-bottom: 1.5em;
+}
+
+#table {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
 </style>

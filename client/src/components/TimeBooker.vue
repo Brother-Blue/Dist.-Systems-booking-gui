@@ -1,8 +1,8 @@
 <template>
   <div class="TimeBooker">
-      <b-table striped hover
+      <b-table bordered medium responsive striped hover
       :items="offices"
-      :fields="fields"/>
+      :fields="fields" id="table" align-h="center"/>
   </div>
 </template>
 
@@ -13,6 +13,10 @@ export default {
   data() {
       return {
           fields: [{
+                key: 'name',
+                label: 'Office'
+            },
+            {
                 key: 'openinghours.monday',
                 label: 'Monday'
             },
@@ -39,14 +43,4 @@ export default {
 </script>
 
 <style scoped>
-
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 15px;
-}
-
 </style>
