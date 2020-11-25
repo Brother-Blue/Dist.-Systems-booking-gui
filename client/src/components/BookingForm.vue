@@ -65,8 +65,9 @@
         </b-col>
         </b-row>
 
-      <b-button id="contact" type="submit" variant="primary">Submit</b-button>
+      <!-- <b-button id="contact" type="submit" variant="primary" v-on:click="publishForm();">Submit</b-button> -->
     </b-form>
+    <b-button id="contact" type="submit" variant="primary" v-on:click="publishForm();">Submit</b-button>
   </div>
 </b-container>
 </template>
@@ -81,6 +82,17 @@
           lastname: '',
           ssn: ''
         }
+      }
+    },
+    methods: {
+      publishForm() {
+        console.log('Vi är innan metoden')
+        this.$mqtt.publish('root/appointments', JSON.stringify({'method': 'add', 'patient': '9306054412', 'dentistOffice': '1', 'date': '20200604'}))
+      }
+    },
+    mqtt: {
+      'root/appointments' (data, topic) {
+        console.log(topic + ': ' + String.fromCharCode.apply(null, data))
       }
     }
 }
