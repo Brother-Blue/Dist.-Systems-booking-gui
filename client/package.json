@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "mqtt": "^4.2.5",
     "vue": "^2.6.11",
+    "vue-mqtt": "^2.0.3",
     "vue-router": "^3.4.3",
     "vue2-google-maps": "^0.10.7"
   },
