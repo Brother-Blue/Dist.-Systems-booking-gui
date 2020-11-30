@@ -316,12 +316,22 @@ export default {
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
                         <p style="font-size:14px;;margin:4px;">Thursday: ${offices.openinghours.thursday}</p>
                         <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p>
-                        <button "type="button">Book time!</button>
+                        <a href="booking/" class="button">Book time!</a>
                     </div>`)
             }
+
     }
 }
 </script>
 
 <style scoped>
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
 </style>
