@@ -316,7 +316,7 @@ export default {
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
                         <p style="font-size:14px;;margin:4px;">Thursday: ${offices.openinghours.thursday}</p>
                         <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p>
-                        <a href="booking/" class="button">Book time!</a>
+                        <a href="booking/${offices.id}" class="button">Book time!</a>
                     </div>`)
             }
 
