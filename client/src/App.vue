@@ -34,9 +34,6 @@ export default {
   components: {
   },
   data() {
-  },
-  mounted() {
-    this.$mqtt.subscribe('grodan')
   }
 }
 </script>
