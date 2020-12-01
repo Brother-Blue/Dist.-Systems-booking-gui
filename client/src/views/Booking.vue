@@ -24,16 +24,11 @@ export default {
     BookingForm
   },
   mounted() {
-    this.$mqtt.publish('root/dentistoffice', JSON.stringify({'method': 'getOne','id': `${this.$route.params.id}`}))
-    this.$mqtt.subscribe('dentistimo/ui/dentistoffices')
-    this.$mqtt.subscribe('dentists/dentist')
+    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne','id': `${this.$route.params.id}`}))
+    this.$mqtt.subscribe('dentistimo/dentists/dentist')
   },
   mqtt: {
-    'dentistimo/ui/dentistoffices' (data) {
-      var jsonData = JSON.parse(data)
-      this.offices = jsonData.offices
-    },
-    'dentists/dentist' (data) {
+   'dentistimo/dentists/dentist' (data) {
       var jsonData = JSON.parse(data)
       this.office = jsonData
       console.log(jsonData)
