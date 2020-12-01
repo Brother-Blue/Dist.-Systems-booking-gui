@@ -18,7 +18,10 @@
         <GmapMarker
         v-for="(r, index) in offices"
         :key="index"
-        :position="r.coordinate"
+        :position="{
+            lat: r.coordinate.longitude,
+            lng: r.coordinate.latitude
+        }"
         :clickable="true"
         :draggable="false"
         @click="toggleInfoWindow(r,index)"
@@ -294,7 +297,10 @@ export default {
     methods: {
             // Show info window based on which office pressed
             toggleInfoWindow: function (offices, idx) {
-                this.infoWindowPos = offices.coordinate
+                this.infoWindowPos = {
+                    lat: offices.coordinate.longitude,
+                    lng: offices.coordinate.latitude
+                }
 
                 this.infoOptions.content = this.getInfoWindowContent(offices)
 
