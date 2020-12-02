@@ -6,6 +6,11 @@
         id="table"
         :office="office"/>
     </div>
+    <div id="table-div">
+        <TimeBooker
+        id="table"
+        :office="office"/>
+    </div>
     <div id="form-div">
       <BookingForm
       id="form"/>
