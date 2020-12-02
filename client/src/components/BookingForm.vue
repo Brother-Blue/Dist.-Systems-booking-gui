@@ -24,28 +24,14 @@
 
         <b-row id="fname-row" align-h="center">
         <b-col cols="2">
-        <p id="fname"> First Name:</p>
+        <p id="name"> Name:</p>
         </b-col>
         <b-col cols="5">
         <b-form-input
           id="input-2"
-          v-model="form.firstname"
+          v-model="form.name"
           required
-          placeholder="Enter First Name"
-        ></b-form-input>
-        </b-col>
-        </b-row>
-
-        <b-row id="lname-row" align-h="center">
-        <b-col cols="2">
-        <p id="lname"> Last Name:</p>
-        </b-col>
-        <b-col cols="5">
-        <b-form-input
-          id="input-3"
-          v-model="form.lastname"
-          required
-          placeholder="Enter Last Name"
+          placeholder="Enter Your Name"
         ></b-form-input>
         </b-col>
         </b-row>
@@ -78,8 +64,7 @@
       return {
         form: {
           email: '',
-          firstname: '',
-          lastname: '',
+          name: '',
           ssn: ''
         }
       }
