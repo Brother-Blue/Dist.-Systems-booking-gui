@@ -19,8 +19,8 @@
         v-for="(r, index) in offices"
         :key="index"
         :position="{
-            lat: r.coordinate.longitude,
-            lng: r.coordinate.latitude
+            lat: r.coordinate.latitude,
+            lng: r.coordinate.longitude
         }"
         :clickable="true"
         :draggable="false"
@@ -298,8 +298,8 @@ export default {
             // Show info window based on which office pressed
             toggleInfoWindow: function (offices, idx) {
                 this.infoWindowPos = {
-                    lat: offices.coordinate.longitude,
-                    lng: offices.coordinate.latitude
+                    lat: offices.coordinate.latitude,
+                    lng: offices.coordinate.longitude
                 }
 
                 this.infoOptions.content = this.getInfoWindowContent(offices)
@@ -325,7 +325,6 @@ export default {
                         <form action="booking/${offices.id}">
                             <button style="margin: 0.75em;">Book a time!</button>
                         </form>
-                        <a href="booking/${offices.id}" class="button">Book time!</a>
                     </div>`)
             }
 
