@@ -314,16 +314,17 @@ export default {
             },
             getInfoWindowContent: function (offices) {
                 return (`  
-                    <div>
-                        <a href="booking/${offices.id}"><h4 style="color:black; margin-top: 0.5em;">${offices.name}</h4></a>
-                        <p style="font-size:16px;">${offices.address}</>
+                    <div style="">
+                        <a href="booking/${offices.id}"><h3 style="font-size: 22px;color:black; margin-top: 0.5em; font-family: 'Libre Baskerville', serif;">${offices.name}</h3></a>
+                        <p style="font-size:18px;">${offices.address}</>
                         <p style="font-size:14px;margin:4px;">Monday: ${offices.openinghours.monday}</p>
                         <p style="font-size:14px;;margin:4px;">Tuesday: ${offices.openinghours.tuesday}</p>
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
                         <p style="font-size:14px;;margin:4px;">Thursday: ${offices.openinghours.thursday}</p>
                         <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p>
                         <form action="booking/${offices.id}">
-                            <button style="margin: 0.75em;">Book a time!</button>
+                            <button style="margin: 0.75em; font-size: 18px; font-family: 'Libre Baskerville', serif; background-color:#66A182; padding: 4px; color: white; border-radius: 20px; padding-left: 10px; padding-right: 10px;
+                            ">Book a time!</button>
                         </form>
                     </div>`)
             }
