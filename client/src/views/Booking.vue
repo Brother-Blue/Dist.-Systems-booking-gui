@@ -4,7 +4,7 @@
         <h1> Book a time!</h1>
         <TimeBooker
         id="table"
-        :offices="offices"/>
+        :office="office"/>
     </div>
     <div id="form-div">
       <BookingForm
@@ -24,22 +24,23 @@ export default {
     BookingForm
   },
   mounted() {
-     this.$mqtt.publish('dentistimo/ui/dentistoffices/get')
-    this.$mqtt.subscribe('dentistimo/ui/dentistoffices')
+    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne','id': `${this.$route.params.id}`}))
+    this.$mqtt.subscribe('dentistimo/dentists/dentist')
   },
   mqtt: {
-    'dentistimo/ui/dentistoffices' (data) {
+   'dentistimo/dentists/dentist' (data) {
       var jsonData = JSON.parse(data)
-      this.offices = jsonData.offices
+      this.office = jsonData
+      console.log(jsonData)
     }
   },
   data() {
     return {
-      offices: []
+      offices: [],
+      office: ''
     }
-  }
 }
-
+}
 </script>
 
 <style>

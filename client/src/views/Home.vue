@@ -26,13 +26,13 @@ export default {
     Map
   },
   mounted() {
-    this.$mqtt.publish('dentistimo/ui/dentistoffices/get')
-    this.$mqtt.subscribe('dentistimo/ui/dentistoffices')
+    this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}))
+    this.$mqtt.subscribe('dentistimo/dentists')
   },
   mqtt: {
-    'dentistimo/ui/dentistoffices' (data) {
-      var jsonData = JSON.parse(data)
-      this.offices = jsonData.offices
+    'dentistimo/dentists' (data) {
+      this.offices = JSON.parse(data)
+      console.log(this.offices)
     }
   },
   data() {
