@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'TimeBooker',
+  name: 'TimeTable',
   props: ['office'],
   data() {
       return {
@@ -36,7 +36,7 @@ export default {
                 key: 'openinghours.friday',
                 label: 'Friday',
             }
-          ],
+          ]
         }
     },
     methods: {
