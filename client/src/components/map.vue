@@ -19,8 +19,8 @@
         v-for="(r, index) in offices"
         :key="index"
         :position="{
-            lat: r.coordinate.longitude,
-            lng: r.coordinate.latitude
+            lat: r.coordinate.latitude,
+            lng: r.coordinate.longitude
         }"
         :clickable="true"
         :draggable="false"
@@ -298,8 +298,8 @@ export default {
             // Show info window based on which office pressed
             toggleInfoWindow: function (offices, idx) {
                 this.infoWindowPos = {
-                    lat: offices.coordinate.longitude,
-                    lng: offices.coordinate.latitude
+                    lat: offices.coordinate.latitude,
+                    lng: offices.coordinate.longitude
                 }
 
                 this.infoOptions.content = this.getInfoWindowContent(offices)
@@ -314,15 +314,18 @@ export default {
             },
             getInfoWindowContent: function (offices) {
                 return (`  
-                    <div>
-                        <h2><b><u>${offices.name}</u></b></h2>
-                        <p style="font-size:16px;">${offices.address}</>
+                    <div style="">
+                        <a href="booking/${offices.id}"><h3 style="font-size: 22px;color:black; margin-top: 0.5em; font-family: 'Libre Baskerville', serif;">${offices.name}</h3></a>
+                        <p style="font-size:18px;">${offices.address}</>
                         <p style="font-size:14px;margin:4px;">Monday: ${offices.openinghours.monday}</p>
                         <p style="font-size:14px;;margin:4px;">Tuesday: ${offices.openinghours.tuesday}</p>
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
                         <p style="font-size:14px;;margin:4px;">Thursday: ${offices.openinghours.thursday}</p>
                         <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p>
-                        <a href="booking/${offices.id}" class="button">Book time!</a>
+                        <form action="booking/${offices.id}">
+                            <button style="margin: 0.75em; font-size: 18px; font-family: 'Libre Baskerville', serif; background-color:#66A182; padding: 4px; color: white; border-radius: 20px; padding-left: 10px; padding-right: 10px;
+                            ">Book a time!</button>
+                        </form>
                     </div>`)
             }
 
@@ -331,13 +334,4 @@ export default {
 </script>
 
 <style scoped>
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
-}
-
 </style>

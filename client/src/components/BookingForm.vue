@@ -1,7 +1,7 @@
 <template>
 <b-container>
 
-    <h2> Contact a Clinic: </h2>
+    <h2> Contact the Clinic: </h2>
 
   <div class="bookingform">
       <b-form>
