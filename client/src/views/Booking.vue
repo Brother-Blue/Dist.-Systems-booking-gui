@@ -1,4 +1,5 @@
 <template>
+<b-container>
   <div id="home">
     <div id="table-div">
         <h1> Book a time!</h1>
@@ -7,42 +8,58 @@
         :office="office"/>
     </div>
     <div>
-      <h2>Monday 7/12</h2>
+      <h2 class="headers">Monday 7/12</h2>
       <b-button-group>
-      <b-col v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
-        <b-button variant="outline-primary">{{ mondayslot }}</b-button>
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
+        <b-button class="timeslots" variant="outline-primary">{{ mondayslot }}</b-button>
       </b-col>
+      </b-row>
       </b-button-group>
-      <h2>Tuesday 8/12</h2>
+
+      <h2 class="headers">Tuesday 8/12</h2>
       <b-button-group>
-      <b-col v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
         <b-button variant="outline-primary">{{ tuesdayslot }}</b-button>
       </b-col>
+      </b-row>
       </b-button-group>
-      <h2>Wednesday 9/12</h2>
+
+      <h2 class="headers">Wednesday 9/12</h2>
       <b-button-group>
-      <b-col v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
         <b-button variant="outline-primary">{{ wednesdayslot }}</b-button>
       </b-col>
+      </b-row>
       </b-button-group>
-      <h2>Thursday 10/12</h2>
+
+      <h2 class="headers">Thursday 10/12</h2>
       <b-button-group>
-      <b-col v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
         <b-button variant="outline-primary">{{ thursdayslot }}</b-button>
       </b-col>
+      </b-row>
       </b-button-group>
-      <h2>Friday 11/12</h2>
+
+      <h2 class="headers">Friday 11/12</h2>
       <b-button-group>
-      <b-col v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
         <b-button variant="outline-primary">{{ fridayslot }}</b-button>
       </b-col>
+      </b-row>
       </b-button-group>
     </div>
+
     <div id="form-div">
       <BookingForm
       id="form"/>
     </div>
   </div>
+</b-container>
 </template>
 
 <script>
@@ -139,6 +156,11 @@ h2 {
 #table {
   padding-left: 4em;
   padding-right: 4em;
+}
+
+.headers {
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 
