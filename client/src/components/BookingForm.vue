@@ -14,7 +14,7 @@
       <b-col cols="5">
         <b-form-input
           id="input-1"
-          v-model="form.email"
+          v-model="form.emailaddress"
           type="email"
           required
           placeholder="Enter email"
@@ -63,7 +63,7 @@
     data() {
       return {
         form: {
-          email: '',
+          emailaddress: '',
           name: '',
           ssn: ''
         }
@@ -72,7 +72,7 @@
     methods: {
       publishForm() {
         console.log('Vi är innan metoden')
-        this.$mqtt.publish('root/appointments', JSON.stringify({'method': 'add', 'patient': '9306054412', 'dentistOffice': '1', 'date': '20200604'}))
+        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'patient': 123123123, 'name': 'Linus Ivarsson', 'emailaddress': 'linusivarsson@live.se', 'dentistOffice': 1, 'date': '2020-12-07T10:00:00.000Z'}))
       }
     },
     mqtt: {
