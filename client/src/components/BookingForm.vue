@@ -1,5 +1,5 @@
 <template>
-<b-container>
+<b-container id="bookingformcontainer">
 
     <h2> Contact the Clinic: </h2>
 
@@ -118,6 +118,10 @@ h2 {
 
 #contact:hover {
   color: rgb(57, 77, 41);
+}
+
+#bookingformcontainer{
+  margin-bottom: 5em;
 }
 
 </style>

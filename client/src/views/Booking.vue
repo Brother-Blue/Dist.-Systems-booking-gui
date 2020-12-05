@@ -9,46 +9,46 @@
     </div>
     <div>
       <h2 class="headers">Monday 7/12</h2>
-      <b-button-group>
+      <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
-        <b-button class="timeslots" variant="outline-primary">{{ mondayslot }}</b-button>
+        <b-button class="time-button" variant="outline-primary">{{ mondayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
 
       <h2 class="headers">Tuesday 8/12</h2>
-      <b-button-group>
+      <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
-        <b-button variant="outline-primary">{{ tuesdayslot }}</b-button>
+        <b-button class="time-button" variant="outline-primary">{{ tuesdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
 
       <h2 class="headers">Wednesday 9/12</h2>
-      <b-button-group>
+      <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
-        <b-button variant="outline-primary">{{ wednesdayslot }}</b-button>
+        <b-button class="time-button" variant="outline-primary">{{ wednesdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
 
       <h2 class="headers">Thursday 10/12</h2>
-      <b-button-group>
+      <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
-        <b-button variant="outline-primary">{{ thursdayslot }}</b-button>
+        <b-button class="time-button" variant="outline-primary">{{ thursdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
 
       <h2 class="headers">Friday 11/12</h2>
-      <b-button-group>
+      <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
-        <b-button variant="outline-primary">{{ fridayslot }}</b-button>
+        <b-button class="time-button" variant="outline-primary">{{ fridayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -163,5 +163,20 @@ h2 {
   margin-top: 1em;
 }
 
+.timeslots {
+  background-color: #e98d58;
+  padding: 2em;
+}
+
+.time-button {
+  margin: 0.5em;
+  color: #fff !important;
+  border-color: #fff !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.time-button:hover {
+  background-color: #2E4057 !important;
+}
 
 </style>
