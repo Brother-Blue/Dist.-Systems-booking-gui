@@ -121,8 +121,7 @@ export default {
       console.log(timeslots)
       console.log('timeslots innan return:' + timeslots)
       return timeslots;
-
-    }  
+    }
   }
 }
 </script>
@@ -146,7 +145,8 @@ export default {
 }
     
 h1 {
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
+  font-size: 50px !important;
 }
 
 h2 {
@@ -177,6 +177,14 @@ h2 {
 
 .time-button:hover {
   background-color: #2E4057 !important;
+}
+
+.time-button-clicked {
+  background-color: #2E4057 !important;
+}
+
+#form-div {
+  margin-bottom: 5em;
 }
 
 </style>
