@@ -1,7 +1,7 @@
 <template>
-  <b-row>
-    <b-col md="auto">
-      <b-calendar v-model="value" locale="en-US"></b-calendar>
+  <b-row no-gutters>
+    <b-col cols="12">
+      <b-calendar class=calendar block v-model="value" locale="en-US"></b-calendar>
     </b-col>
     <p>{{value}}</p>
   </b-row>
@@ -18,3 +18,7 @@
     }
   }
 </script>
+
+<style scoped>
+
+</style>
