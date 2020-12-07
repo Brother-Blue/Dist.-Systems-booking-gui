@@ -7,36 +7,8 @@
         :office="office"/>
     </div>
     <div>
-      <b-row>
-      <h1>Monday</h1>
-      <b-col v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
-        <b-button close>{{ mondayslot }}</b-button>
-      </b-col>
-      </b-row>
-      <b-row>
-      <h1>Tuesday</h1>
-      <b-col v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
-        <b-button close>{{ tuesdayslot }}</b-button>
-      </b-col>
-      </b-row>
-      <b-row>
-      <h1>Wednesday</h1>
-      <b-col v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
-        <b-button close>{{ wednesdayslot }}</b-button>
-      </b-col>
-      </b-row>
-      <b-row>
-      <h1>Thursday</h1>
-      <b-col v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
-        <b-button close>{{ thursdayslot }}</b-button>
-      </b-col>
-      </b-row>
-      <b-row>
-      <h1>Friday</h1>
-      <b-col v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
-        <b-button close>{{ fridayslot }}</b-button>
-      </b-col>
-      </b-row>
+      <Calendar
+      id="calendar"/>
     </div>
     <div id="form-div">
       <BookingForm
@@ -48,12 +20,14 @@
 <script>
 import TimeBooker from '../components/TimeBooker.vue'
 import BookingForm from '../components/BookingForm.vue'
+import Calendar from '../components/Calendar.vue'
 
 export default {
   name: 'Booking',
   components: {
     TimeBooker,
-    BookingForm
+    BookingForm,
+    Calendar
   },
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne','id': `${this.$route.params.id}`}))
