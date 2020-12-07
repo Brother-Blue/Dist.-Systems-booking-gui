@@ -1,26 +1,20 @@
 <template>
-  <div>
-    <b-calendar v-model="value" :min="min" :max="max" locale="en"></b-calendar>
-  </div>
+  <b-row>
+    <b-col md="auto">
+      <b-calendar v-model="value" locale="en-US"></b-calendar>
+    </b-col>
+    <p>{{value}}</p>
+  </b-row>
 </template>
 
 <script>
   export default {
     data() {
-      const now = new Date()
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      const minDate = new Date(today)
-      minDate.setMonth(minDate.getMonth() - 2)
-      minDate.setDate(15)
-      const maxDate = new Date(today)
-      maxDate.setMonth(maxDate.getMonth() + 2)
-      maxDate.setDate(15)
-
       return {
-        value: '',
-        min: minDate,
-        max: maxDate
+        value: ''
       }
+    },
+    methods: {
     }
   }
 </script>
