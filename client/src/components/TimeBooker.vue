@@ -40,28 +40,6 @@ export default {
         }
     },
     methods: {
-        getTimeSlots: function (dailyHours) {
-            /* Want to add time slots depending on how many
-            hours there are, for each time slot, starting
-            at the openinghours, there should be a time slot. */
-
-
-            var res= dailyHours.split("-"); 
-            var opening = res[0].split(":");
-            var closing = res[1].split(":");
-
-            opening = opening[0]+opening[1];
-            closing = closing[0]+closing[1];
-
-            var timeslots = [];
-            
-            for(var i = opening; i < closing; i++) {
-                timeslots.push(i + ":00")
-                timeslots.push(i + ":30")
-            }
-
-            return timeslots;
-        }
     }
 }
 
