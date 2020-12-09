@@ -2,7 +2,7 @@
     <div>
         <TimeBooker
         id="table"
-        :office:"office"/>
+        :office="office"/>
     </div>
 </template>
 
@@ -30,7 +30,8 @@ export default {
   },
   data() {
       return {
-          office: [],
+          offices: [],
+          office: '',
           fields: [{
                 key: 'name',
                 label: 'Office'
