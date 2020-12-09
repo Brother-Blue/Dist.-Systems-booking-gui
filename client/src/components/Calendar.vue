@@ -1,4 +1,5 @@
 <template>
+<b-container>
   <b-row no-gutters>
     <b-col cols="12">
       <b-calendar class="calendar"
@@ -15,10 +16,19 @@
     </b-col>
     <p>{{value}}</p>
   </b-row>
+  <TimeSlots
+  :timeslotDay="timeslotDay"/>
+</b-container>
 </template>
 
 <script>
+  import TimeSlots from '../components/TimeSlots.vue'
+
   export default {
+  name: 'Calendar',
+  components: {
+    TimeSlots
+  },
     data() {
     const date = new Date()
     const today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
@@ -35,11 +45,11 @@
         min: minDate,
         max: maxDate,
         monday: 1,
-        thuesday: 2,
+        tuesday: 2,
         wednesday: 3,
         thursday: 4,
-        friday: 5
-
+        friday: 5,
+        timeslotDay: ''
       }
     },
     methods: {
@@ -55,21 +65,27 @@
         const daySelected = new Date(date).getDay()
 
         //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
+        
         if(daySelected === this.monday) {
-          //code for the array of timeslots to be used in the calendar.
+          this.timeslotDay = "monday";
         }
-        if(daySelected === this.thuesday) {
-          //code for the array of timeslots to be used in the calendar.
+        
+        if(daySelected === this.tuesday) {
+          this.timeslotDay = "tuesday";
         }
+        
         if(daySelected === this.wednesday) {
-          //code for the array of timeslots to be used in the calendar.
+          this.timeslotDay = "wednesday";
         }
+        
         if(daySelected === this.thursday) {
-          //code for the array of timeslots to be used in the calendar.
+          this.timeslotDay = "thursday";
         }
+
         if(daySelected === this.friday) {
-          //code for the array of timeslots to be used in the calendar.
-        }else {
+          this.timeslotDay = "friday";
+
+        } else {
           //some sort of error logging.
         }
         console.log(daySelected);

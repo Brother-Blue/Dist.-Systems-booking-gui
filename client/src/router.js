@@ -15,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/booking',
+      path: '/booking/:id',
       name: 'booking',
       component: Booking
     }

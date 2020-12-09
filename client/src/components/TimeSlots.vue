@@ -1,16 +1,7 @@
 <template>
   <div id="home">
-    <div id="table-div">
-        <h1> Book a time!</h1>
-    </div>
     <div>
-      <Calendar
-      id="calendar"
-      />
-    </div>
-
-    <!--<div>
-      <div>
+      <div v-if="timeslotDay === 'monday'">
       <h2 class="headers">Monday</h2>
       <b-button-group class="timeslots">
       <b-row>
@@ -21,7 +12,7 @@
       </b-button-group>
       </div>
 
-      <div>
+      <div v-if="timeslotDay === 'tuesday'">
       <h2 class="headers">Tuesday</h2>
       <b-button-group class="timeslots">
       <b-row>
@@ -32,7 +23,7 @@
       </b-button-group>
       </div>
 
-      <div>
+      <div v-if="timeslotDay === 'wednesday'">
       <h2 class="headers">Wednesday</h2>
       <b-button-group class="timeslots">
       <b-row>
@@ -43,7 +34,7 @@
       </b-button-group>
       </div>
 
-      <div>
+      <div v-if="timeslotDay === 'thursday'">
       <h2 class="headers">Thursday</h2>
       <b-button-group class="timeslots">
       <b-row>
@@ -54,7 +45,7 @@
       </b-button-group>
       </div>
 
-    <div>
+    <div v-if="timeslotDay === 'friday'">
       <h2 class="headers">Friday</h2>
       <b-button-group class="timeslots">
       <b-row>
@@ -64,26 +55,17 @@
       </b-row>
       </b-button-group>
     </div>
-    </div> -->
-
-
-    <div id="form-div">
-      <BookingForm
-      id="form"/>
     </div>
   </div>
 </template>
 
 <script>
-import BookingForm from '../components/BookingForm.vue'
-import Calendar from '../components/Calendar.vue'
 
 export default {
-  name: 'Booking',
-  components: {
-    BookingForm,
-    Calendar
-  },
+  name: 'TimeSlots',
+  props: [
+      'timeslotDay'
+  ],
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne','id': `${this.$route.params.id}`}))
     this.$mqtt.subscribe('dentistimo/dentists/dentist')
@@ -133,7 +115,6 @@ export default {
       console.log(timeslots)
       console.log('timeslots innan return:' + timeslots)
       return timeslots;
-
     }  
   }
 }

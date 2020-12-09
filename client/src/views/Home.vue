@@ -3,7 +3,7 @@
     <b-col>
       <p id="dentisimo" class="headlines"> Dentistimo</p>
       <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
-      <b-button id="book" to="/booking">BOOK A TIME</b-button>
+      <b-button id="book" v-bind:href="'/booking/'">BOOK A TIME</b-button>
       <p id="or">or</p>
       <p id="find">FIND US HERE</p>
     
