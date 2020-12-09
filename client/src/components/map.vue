@@ -314,9 +314,9 @@ export default {
             },
             getInfoWindowContent: function (offices) {
                 return (`  
-                    <div style="">
+                    <div>
                         <a href="booking/${offices.id}"><h3 style="font-size: 22px;color:black; margin-top: 0.5em; font-family: 'Libre Baskerville', serif;">${offices.name}</h3></a>
-                        <p style="font-size:18px;">${offices.address}</>
+                        <p style="font-size:18px;">${offices.address}</p>
                         <p style="font-size:14px;margin:4px;">Monday: ${offices.openinghours.monday}</p>
                         <p style="font-size:14px;;margin:4px;">Tuesday: ${offices.openinghours.tuesday}</p>
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
