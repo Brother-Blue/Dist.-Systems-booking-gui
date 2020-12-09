@@ -2,6 +2,7 @@
   <div id="home">
     <div id="table-div">
         <h1> Book a time!</h1>
+        <h3> Insert dentist name here </h3>
     </div>
     <div>
       <Calendar
