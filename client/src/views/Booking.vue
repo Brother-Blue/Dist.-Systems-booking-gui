@@ -7,6 +7,55 @@
       <Calendar
       id="calendar"/>
     </div>
+
+    <div>
+      <h2 class="headers">Monday</h2>
+      <b-button-group class="timeslots">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
+        <b-button class="time-button" variant="outline-primary">{{ mondayslot }}</b-button>
+      </b-col>
+      </b-row>
+      </b-button-group>
+
+      <h2 class="headers">Tuesday</h2>
+      <b-button-group class="timeslots">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
+        <b-button class="time-button" variant="outline-primary">{{ tuesdayslot }}</b-button>
+      </b-col>
+      </b-row>
+      </b-button-group>
+
+      <h2 class="headers">Wednesday</h2>
+      <b-button-group class="timeslots">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
+        <b-button class="time-button" variant="outline-primary">{{ wednesdayslot }}</b-button>
+      </b-col>
+      </b-row>
+      </b-button-group>
+
+      <h2 class="headers">Thursday</h2>
+      <b-button-group class="timeslots">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
+        <b-button class="time-button" variant="outline-primary">{{ thursdayslot }}</b-button>
+      </b-col>
+      </b-row>
+      </b-button-group>
+
+      <h2 class="headers">Friday</h2>
+      <b-button-group class="timeslots">
+      <b-row>
+      <b-col cols="12" md="3" lg="2" v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
+        <b-button class="time-button" variant="outline-primary">{{ fridayslot }}</b-button>
+      </b-col>
+      </b-row>
+      </b-button-group>
+    </div>
+
+
     <div id="form-div">
       <BookingForm
       id="form"/>
@@ -96,9 +145,14 @@ export default {
 #decription {
     margin: 2em;
 }
-
+    
 h1 {
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
+  font-size: 50px !important;
+}
+
+h2 {
+  padding-top: 1em;
 }
 
 #table {
@@ -106,4 +160,34 @@ h1 {
   padding-right: 4em;
 }
 
+.headers {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.timeslots {
+  background-color: #e98d58;
+  padding: 2em;
+}
+
+.time-button {
+  margin: 0.5em;
+  color: #fff !important;
+  border-color: #fff !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.time-button:hover {
+  background-color: #2E4057 !important;
+}
+
+.time-button-clicked {
+  background-color: #2E4057 !important;
+}
+
+#form-div {
+  margin-bottom: 5em;
+}
+
 </style>
+
