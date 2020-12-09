@@ -1,5 +1,4 @@
 <template>
-  <div id="home">
     <div>
       <div v-if="timeslotDay === 'monday'">
       <h2 class="headers">Monday</h2>
@@ -56,7 +55,6 @@
       </b-button-group>
     </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -127,7 +125,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 1em;
 }
 
 #available {

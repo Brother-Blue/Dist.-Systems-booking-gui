@@ -1,13 +1,13 @@
 <template>
     <b-container>
         <div>
-            <p> {{office.name}} </p>
-            <p> {{office.address}} </p>
-            <p> Monday: {{office.openinghours.monday}} </p>
-            <p> Tuesday: {{office.openinghours.tuesday}} </p>
-            <p> Wednesday: {{office.openinghours.wednesday}} </p>
-            <p> Thursday: {{office.openinghours.thursday}} </p>
-            <p> Friday: {{office.openinghours.friday}} </p>
+            <h3 id="name"> {{office.name}} </h3>
+            <p id="address"> {{office.address}} </p>
+            <p class="opening"> Monday: {{office.openinghours.monday}} </p>
+            <p class="opening"> Tuesday: {{office.openinghours.tuesday}} </p>
+            <p class="opening"> Wednesday: {{office.openinghours.wednesday}} </p>
+            <p class="opening"> Thursday: {{office.openinghours.thursday}} </p>
+            <p class="opening"> Friday: {{office.openinghours.friday}} </p>
             <b-button id="visit-office" v-bind:href="'/booking/' + `${office.id}`">Go to the office</b-button>
         </div>
     </b-container>
@@ -22,10 +22,24 @@ export default {
 
 <style scoped>
 
+#name {
+    font-size: 28px;
+    margin-bottom: 0.25em;
+}
+
+#address {
+    font-size: 20px;
+    margin-bottom: 1.5em;
+}
+
+.opening {
+    font-size: 17px;
+}
+
 #visit-office {
   border-radius: 30px;
-  margin-top: 0.5em;
-  padding: 12px 22px;
+  margin-top: 1em;
+  padding: 10px 20px;
   background-color:#e98d58;
   border: #e98d58;
   font-size: 19px;

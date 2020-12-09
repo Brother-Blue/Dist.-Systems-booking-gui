@@ -1,22 +1,31 @@
 <template>
 <b-container>
     <div id="home">
-        <h2>Find an office:</h2>
-    <div>
-        <TimeBooker
-        id="table"
-        :office="office"/>
-    </div>
+        <h2 id="findOffice">Find an office:</h2>
+
+      <div>
+        <b-row>
+        <b-col cols="12" md="6" lg="4" v-for="office in office" v-bind:key="office.id" id="offices">
+          <Office
+          :office="office"
+          id="office"/>
+        </b-col>
+        </b-row>
+      </div>
+
     </div>
 </b-container>
 </template>
 
 <script>
-import TimeBooker from '../components/TimeBooker.vue'
+//import TimeBooker from '../components/TimeBooker.vue'
+import Office from '../components/Office.vue'
+
 export default {
     name: 'Offices',
     components: {
-    TimeBooker
+    //TimeBooker,
+    Office
   },
     mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAll'}))
@@ -116,6 +125,18 @@ p {
   padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
+}
+
+#table {
+  margin-bottom: 4em;
+}
+
+#office {
+  margin-bottom: 4em;
+}
+
+#findOffice {
+  margin-bottom: 2em;
 }
 
 </style>
