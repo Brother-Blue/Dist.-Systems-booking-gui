@@ -13,7 +13,7 @@
 
       <b-col cols="5">
         <b-form-input
-          id="input-1"
+          id="input-email"
           v-model="form.email"
           type="email"
           required
@@ -28,7 +28,7 @@
         </b-col>
         <b-col cols="5">
         <b-form-input
-          id="input-2"
+          id="input-mame"
           v-model="form.name"
           required
           placeholder="Enter Your Name"
@@ -42,9 +42,9 @@
         </b-col>
         <b-col cols="5">
         <b-form-input
-          id="input-1"
+          id="input-ssn"
           v-model="form.ssn"
-          type="ssn"
+          type="password"
           required
           placeholder="Enter Social Security Number"
         ></b-form-input>
