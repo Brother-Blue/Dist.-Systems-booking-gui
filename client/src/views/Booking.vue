@@ -2,9 +2,6 @@
   <div id="home">
     <div id="table-div">
         <h1> Book a time!</h1>
-        <TimeBooker
-        id="table"
-        :office="office"/>
     </div>
     <div>
       <Calendar
@@ -18,14 +15,12 @@
 </template>
 
 <script>
-import TimeBooker from '../components/TimeBooker.vue'
 import BookingForm from '../components/BookingForm.vue'
 import Calendar from '../components/Calendar.vue'
 
 export default {
   name: 'Booking',
   components: {
-    TimeBooker,
     BookingForm,
     Calendar
   },

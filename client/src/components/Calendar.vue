@@ -16,8 +16,7 @@
     },
     methods: {
       dateDisabled(ymd, date) {
-        // Disable weekends (Sunday = `0`, Saturday = `6`) and
-        // disable days that fall on the 13th of the month
+        // Disable weekends (Sunday = `0`, Saturday = `6`).
         const weekday = date.getDay()
         // Return `true` if the date should be disabled
         return weekday === 0 || weekday === 6
