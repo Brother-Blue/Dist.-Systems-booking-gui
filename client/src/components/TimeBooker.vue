@@ -1,9 +1,14 @@
 <template>
-  <div class="TimeBooker">
-      <b-table bordered medium responsive striped hover
-      :items="office"
-      :fields="fields" id="table" align-h="center"/>
-  </div>
+<b-container>
+    <div id="home">
+        <div class="TimeBooker">
+            <b-table bordered medium responsive striped hover
+            :items="office"
+            :fields="fields" id="table" align-h="center">
+            </b-table>
+        </div>
+    </div>
+</b-container>
 </template>
 
 <script>
@@ -11,8 +16,12 @@ export default {
   name: 'TimeBooker',
   props: ['office'],
   data() {
-      return {
+    return {
           fields: [{
+                key: 'id',
+                label: 'Id'
+            },
+            {
                 key: 'name',
                 label: 'Office'
             },
@@ -37,14 +46,15 @@ export default {
                 label: 'Friday',
             }
           ],
-        }
+      }
     },
-    methods: {
-    }
+  methods: {
+  }
 }
 
 
 </script>
 
 <style scoped>
+
 </style>
