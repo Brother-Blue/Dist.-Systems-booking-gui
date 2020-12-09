@@ -17,10 +17,7 @@ export default {
   props: ['office'],
   data() {
     return {
-          fields: [{
-                key: 'id',
-                label: 'Id'
-            },
+          fields: [
             {
                 key: 'name',
                 label: 'Office'
