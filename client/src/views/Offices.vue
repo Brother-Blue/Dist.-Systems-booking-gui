@@ -26,11 +26,6 @@ export default {
    'dentistimo/dentists' (data) {
       var jsonData = JSON.parse(data)
       this.office = jsonData
-      this.mondayslots = this.getTimeSlots(jsonData[0].openinghours.monday)
-      this.tuesdayslots = this.getTimeSlots(jsonData[0].openinghours.tuesday)
-      this.wednesdayslots = this.getTimeSlots(jsonData[0].openinghours.wednesday)
-      this.thursdayslots = this.getTimeSlots(jsonData[0].openinghours.thursday)
-      this.fridayslots = this.getTimeSlots(jsonData[0].openinghours.friday)
     }
   },
   data() {
