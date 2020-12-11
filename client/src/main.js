@@ -6,10 +6,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App.vue'
 import VueMqtt from 'vue-mqtt';
+import UUID from "vue-uuid";
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
+Vue.use(UUID);
 
 Vue.use(VueMqtt, 'ws://localhost:9001/ws', {clientId: 'WebClient-' + parseInt(Math.random() * 100000)})
 
