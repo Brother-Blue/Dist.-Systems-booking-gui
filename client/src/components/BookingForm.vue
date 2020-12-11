@@ -8,7 +8,7 @@
 
       <b-row>
         <b-col>
-          <p>Your selected time: </p>
+          <p>Your selected time: {{selectedTime}}</p>
         </b-col>
       </b-row>
 
@@ -66,6 +66,10 @@
 
 <script>
   export default {
+    name: 'BookingForm',
+    props: [
+      'selectedTime'
+    ],
     data() {
       return {
         form: {

@@ -57,7 +57,8 @@
 
     <div id="form-div">
         <BookingForm
-        id="form"/>
+        id="form"
+        :selectedTime="timeSlot"/>
     </div>
     </div>
 </template>
@@ -104,13 +105,14 @@ export default {
       tuesdayslots: [],
       wednesdayslots: [],
       thursdayslots: [],
-      fridayslots: []
-
+      fridayslots: [],
+      timeSlot: ''
     }
   },
   methods: {
     bookTimeSlot(timeslot){
-      console.log(timeslot);
+      this.timeSlot = timeslot;
+      console.log("here is the slot:" + this.timeSlot);
     }
   }
 }
