@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Booking from './views/Booking.vue'
-import BookingMain from './views/BookingMain.vue'
+import Offices from './views/Offices.vue'
 
 Vue.use(Router)
 
@@ -17,8 +17,8 @@ export default new Router({
     },
     {
       path: '/booking',
-      name: 'BookingMain',
-      component: BookingMain
+      name: 'offices',
+      component: Offices
     },
     {
       path: '/booking/:id',

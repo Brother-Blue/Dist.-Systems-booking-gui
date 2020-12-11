@@ -6,6 +6,12 @@
   <div class="bookingform">
       <b-form>
 
+      <b-row>
+        <b-col>
+          <p>Your selected time: {{value}}, {{selectedTime}}</p>
+        </b-col>
+      </b-row>
+
       <b-row id="email-row" align-h="center">
       <b-col cols="2">
         <p id="email"> Email Address:</p>
@@ -13,8 +19,8 @@
 
       <b-col cols="5">
         <b-form-input
-          id="input-1"
-          v-model="form.emailaddress"
+          id="input-email"
+          v-model="form.email"
           type="email"
           required
           placeholder="Enter email"
@@ -28,7 +34,7 @@
         </b-col>
         <b-col cols="5">
         <b-form-input
-          id="input-2"
+          id="input-mame"
           v-model="form.name"
           required
           placeholder="Enter Your Name"
@@ -42,9 +48,9 @@
         </b-col>
         <b-col cols="5">
         <b-form-input
-          id="input-1"
+          id="input-ssn"
           v-model="form.ssn"
-          type="ssn"
+          type="password"
           required
           placeholder="Enter Social Security Number"
         ></b-form-input>
@@ -60,8 +66,14 @@
 
 <script>
   export default {
+    name: 'BookingForm',
+    props: [
+      'selectedTime',
+      'value'
+    ],
     data() {
       return {
+        dateTime: this.value + " " + this.selectedTime,
         form: {
           emailaddress: '',
           name: '',
@@ -70,13 +82,17 @@
       }
     },
     methods: {
+
       publishForm() {
-        console.log('Vi är innan metoden')
-        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'patient': 123123123, 'name': 'Linus Ivarsson', 'emailaddress': 'linusivarsson@live.se', 'dentistOffice': 1, 'date': '2020-12-07T10:00:00.000Z'}))
+
+        let dateIssuance = new Date();
+        let timeIssuance = dateIssuance.getTime();
+
+        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': '', 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}))
       }
     },
     mqtt: {
-      'root/appointments' (data, topic) {
+      'dentistimo/appointments' (data, topic) {
         console.log(topic + ': ' + String.fromCharCode.apply(null, data))
       }
     }
