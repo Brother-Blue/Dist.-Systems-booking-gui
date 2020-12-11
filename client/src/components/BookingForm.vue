@@ -73,6 +73,7 @@
     ],
     data() {
       return {
+        dateTime: this.value + " " + this.selectedTime,
         form: {
           email: '',
           name: '',
@@ -81,12 +82,24 @@
       }
     },
     methods: {
+
+      /*
+       "userid": 12345, GOT THIS (if it doesnt work try form.ssn)
+       "requestid": 13,  
+       "dentistid": 1,  GOT THIS
+       "issuance": 1602406766314,
+       "time":"2020-12-1414:30" GOT THIS
+      */
       publishForm() {
-        this.$mqtt.publish('root/appointments', JSON.stringify({'method': 'add', 'patient': '9306054412', 'dentistOffice': '1', 'date': '20200604'}))
+
+        let dateIssuance = new Date();
+        let timeIssuance = dateIssuance.getTime();
+
+        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': '', 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime}))
       }
     },
     mqtt: {
-      'root/appointments' (data, topic) {
+      'dentistimo/appointments' (data, topic) {
         console.log(topic + ': ' + String.fromCharCode.apply(null, data))
       }
     }
