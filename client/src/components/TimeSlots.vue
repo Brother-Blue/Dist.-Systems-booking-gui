@@ -5,7 +5,7 @@
       <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
-        <b-button class="time-button" variant="outline-primary">{{ mondayslot }}</b-button>
+        <b-button class="time-button" v-on:click="bookTimeSlot(mondayslot)" variant="outline-primary">{{ mondayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -54,13 +54,23 @@
       </b-row>
       </b-button-group>
     </div>
+
+    <div id="form-div">
+        <BookingForm
+        id="form"/>
+    </div>
     </div>
 </template>
 
 <script>
 
+import BookingForm from '../components/BookingForm.vue'
+
 export default {
   name: 'TimeSlots',
+  components: {
+    BookingForm
+  },
   props: [
       'timeslotDay'
   ],
@@ -99,6 +109,9 @@ export default {
     }
   },
   methods: {
+    bookTimeSlot(timeslot){
+      console.log(timeslot);
+    }
   }
 }
 </script>

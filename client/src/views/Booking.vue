@@ -10,22 +10,15 @@
       id="calendar"
       />
     </div>
-
-    <div id="form-div">
-      <BookingForm
-      id="form"/>
-    </div>
   </div>
 </template>
 
 <script>
-import BookingForm from '../components/BookingForm.vue'
 import Calendar from '../components/Calendar.vue'
 
 export default {
   name: 'Booking',
   components: {
-    BookingForm,
     Calendar
   }
 }
@@ -86,10 +79,6 @@ h2 {
 
 .time-button-clicked {
   background-color: #2E4057 !important;
-}
-
-#form-div {
-  margin-bottom: 5em;
 }
 
 </style>

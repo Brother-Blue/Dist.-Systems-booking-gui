@@ -18,6 +18,7 @@
   </b-row>
   <TimeSlots
   :timeslotDay="timeslotDay"/>
+
 </b-container>
 </template>
 

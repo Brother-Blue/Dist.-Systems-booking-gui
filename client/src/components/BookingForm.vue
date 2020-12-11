@@ -6,6 +6,12 @@
   <div class="bookingform">
       <b-form>
 
+      <b-row>
+        <b-col>
+          <p>Your selected time: </p>
+        </b-col>
+      </b-row>
+
       <b-row id="email-row" align-h="center">
       <b-col cols="2">
         <p id="email"> Email Address:</p>
