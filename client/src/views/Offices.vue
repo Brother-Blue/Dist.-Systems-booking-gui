@@ -18,13 +18,11 @@
 </template>
 
 <script>
-//import TimeBooker from '../components/TimeBooker.vue'
 import Office from '../components/Office.vue'
 
 export default {
     name: 'Offices',
     components: {
-    //TimeBooker,
     Office
   },
     mounted() {
