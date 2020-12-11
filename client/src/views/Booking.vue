@@ -1,4 +1,5 @@
 <template>
+<b-container>
   <div id="home">
     <div id="table-div">
         <h1> Book a time!</h1>
@@ -11,6 +12,7 @@
       />
     </div>
   </div>
+</b-container>
 </template>
 
 <script>
