@@ -83,13 +83,6 @@
     },
     methods: {
 
-      /*
-       "userid": 12345, GOT THIS (if it doesnt work try form.ssn)
-       "requestid": 13,  
-       "dentistid": 1,  GOT THIS
-       "issuance": 1602406766314,
-       "time":"2020-12-1414:30" GOT THIS
-      */
       publishForm() {
 
         let dateIssuance = new Date();
