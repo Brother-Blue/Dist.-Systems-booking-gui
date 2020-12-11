@@ -58,7 +58,8 @@
     <div id="form-div">
         <BookingForm
         id="form"
-        :selectedTime="timeSlot"/>
+        :selectedTime="timeSlot"
+        :value="value"/>
     </div>
     </div>
 </template>
@@ -73,7 +74,8 @@ export default {
     BookingForm
   },
   props: [
-      'timeslotDay'
+      'timeslotDay',
+      'value'
   ],
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAllTimeslots'}))

@@ -8,7 +8,7 @@
 
       <b-row>
         <b-col>
-          <p>Your selected time: {{selectedTime}}</p>
+          <p>Your selected time: {{value}}, {{selectedTime}}</p>
         </b-col>
       </b-row>
 
@@ -68,7 +68,8 @@
   export default {
     name: 'BookingForm',
     props: [
-      'selectedTime'
+      'selectedTime',
+      'value'
     ],
     data() {
       return {
@@ -81,7 +82,6 @@
     },
     methods: {
       publishForm() {
-        console.log('Vi är innan metoden')
         this.$mqtt.publish('root/appointments', JSON.stringify({'method': 'add', 'patient': '9306054412', 'dentistOffice': '1', 'date': '20200604'}))
       }
     },

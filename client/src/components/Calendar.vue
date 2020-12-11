@@ -17,7 +17,8 @@
     <p>{{value}}</p>
   </b-row>
   <TimeSlots
-  :timeslotDay="timeslotDay"/>
+  :timeslotDay="timeslotDay"
+  :value="value"/>
 
 </b-container>
 </template>
