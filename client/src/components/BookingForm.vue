@@ -65,6 +65,9 @@
 </template>
 
 <script>
+
+  import { uuid } from 'vue-uuid'; 
+
   export default {
     name: 'BookingForm',
     props: [
@@ -88,7 +91,9 @@
         let dateIssuance = new Date();
         let timeIssuance = dateIssuance.getTime();
 
-        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': '', 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}))
+        console.log("Date and Time is: " + this.dateTime)
+
+        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': uuid.v4(), 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}))
       }
     },
     mqtt: {
