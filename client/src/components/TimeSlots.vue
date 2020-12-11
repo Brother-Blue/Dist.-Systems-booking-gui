@@ -16,7 +16,7 @@
       <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
-        <b-button class="time-button" variant="outline-primary">{{ tuesdayslot }}</b-button>
+        <b-button class="time-button" v-on:click="bookTimeSlot(tuesdayslot)" variant="outline-primary">{{ tuesdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -27,7 +27,7 @@
       <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
-        <b-button class="time-button" variant="outline-primary">{{ wednesdayslot }}</b-button>
+        <b-button class="time-button" v-on:click="bookTimeSlot(wednesdayslot)" variant="outline-primary">{{ wednesdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -38,7 +38,7 @@
       <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
-        <b-button class="time-button" variant="outline-primary">{{ thursdayslot }}</b-button>
+        <b-button class="time-button" v-on:click="bookTimeSlot(thursdayslot)" variant="outline-primary">{{ thursdayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -49,7 +49,7 @@
       <b-button-group class="timeslots">
       <b-row>
       <b-col cols="12" md="3" lg="2" v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
-        <b-button class="time-button" variant="outline-primary">{{ fridayslot }}</b-button>
+        <b-button class="time-button" v-on:click="bookTimeSlot(fridayslot)" variant="outline-primary">{{ fridayslot }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
