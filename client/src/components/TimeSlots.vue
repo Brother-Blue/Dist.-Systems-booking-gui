@@ -55,6 +55,10 @@
       </b-button-group>
     </div>
 
+    <div v-if="this.appointmentData.success === true">
+      <p>Your booking on {{this.appointmentData.time}} has been made sucessfully!</p>
+    </div>
+
     <div id="form-div">
         <BookingForm
         id="form"
