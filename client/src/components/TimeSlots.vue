@@ -83,7 +83,8 @@ export default {
   },
   props: [
       'timeslotDay',
-      'value'
+      'value',
+      'removeDate'
   ],
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAllTimeslots'}))
@@ -124,10 +125,50 @@ export default {
     }
   },
   methods: {
+    async updateTimeSlot() {
+      console.log('pong')
+                switch (this.timeslotDay) {
+            case "monday":
+              this.mondayslots = await this.removeTimeSlot(this.mondayslots);
+              break;
+
+            case "tuesday":
+              this.tuesdayslots = await this.removeTimeSlot(this.tuesdayslots);
+              break;
+          
+            case "wednesday":
+              this.wednesdayslots = await this.removeTimeSlot(this.wednesdayslots);
+              break;
+
+            case "thursday":
+              this.thursdayslots = await this.removeTimeSlot(this.thursdayslots);
+              break;
+
+            case "friday":
+              this.fridayslots = await this.removeTimeSlot(this.fridayslots);
+              break;
+
+            default:
+              return console.log("Invalid method");
+          }
+    },
     bookTimeSlot(timeslot){
       this.timeSlot = timeslot;
       console.log("here is the slot:" + this.timeSlot);
-    }
+    },
+    removeTimeSlot(array) {
+      console.log('array: ' + array[0])
+      console.log('remove array: ' + this.removeDate[0])
+      for ( let i = 0 ; i < array.length ; i++ ) {
+        for ( let k = 0 ; k < array.length ; k++ ) {
+          if ( array[i] === this.removeDate[k] ) {
+            console.log('test 1 :'+array)
+            const test = array[i].splice(array.indexOf(this.removeDate[k]), 1)
+            console.log('test 2 :'+test)
+          }
+        }
+      }
+    },
   }
 }
 </script>
