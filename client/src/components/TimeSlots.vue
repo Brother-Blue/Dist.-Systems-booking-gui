@@ -55,6 +55,14 @@
       </b-button-group>
     </div>
 
+    <div class="response" v-if="this.appointmentData.success === true">
+      <p>Your appointment on {{this.appointmentData.time}} has been made successfully!</p>
+    </div>
+
+    <div class="response" v-if="this.appointmentData.success === false">
+      <p> Your appointment could not be made. Refresh the page and try again. </p>
+    </div>
+
     <div id="form-div">
         <BookingForm
         id="form"
@@ -80,6 +88,7 @@ export default {
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAllTimeslots'}))
     this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+    this.$mqtt.subscribe('dentistimo/appointments/response')
   },
   mqtt: {
    'dentistimo/dentists/offices/timeslots' (data) {
@@ -95,8 +104,10 @@ export default {
           this.thursdayslots = this.office[i].timeslots.thursday;
           this.fridayslots = this.office[i].timeslots.friday;
         }  
-
       }
+    },
+    'dentistimo/appointments/response' (data) {
+      this.appointmentData = JSON.parse(data)
     }
   },
   data() {
@@ -108,7 +119,8 @@ export default {
       wednesdayslots: [],
       thursdayslots: [],
       fridayslots: [],
-      timeSlot: ''
+      timeSlot: '',
+      appointmentData: ''
     }
   },
   methods: {
@@ -179,6 +191,10 @@ h2 {
 
 #form-div {
   margin-bottom: 5em;
+}
+
+.response {
+  margin-top: 1.5em;
 }
 
 </style>
