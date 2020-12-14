@@ -51,11 +51,13 @@
         wednesday: 3,
         thursday: 4,
         friday: 5,
-        timeslotDay: ''
+        timeslotDay: '',
+        appointments: ''
       }
     },
     methods: {
       dateDisabled(ymd, date) {
+        console.log(this.$route.params.id)
         // Disable weekends (Sunday = `0`, Saturday = `6`).
         const weekday = date.getDay()
         // Return `true` if the date should be disabled
@@ -92,7 +94,17 @@
         }
         console.log(daySelected);
       }
+    },
+  mounted() {
+    this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
+    this.$mqtt.subscribe('dentistimo/appointments')
+  },
+  mqtt: {
+    'dentistimo/appointments' (data) {
+      this.appointments = JSON.parse(data)
+      console.log(this.appointments)
     }
+  },
   }
 </script>
 
