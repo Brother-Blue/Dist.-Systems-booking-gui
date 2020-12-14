@@ -88,7 +88,7 @@
 
       publishForm() {
       
-        dateTime = this.value + " " + this.selectedTime
+        this.dateTime = this.value + " " + this.selectedTime
         let dateIssuance = new Date();
         let timeIssuance = dateIssuance.getTime();
 
