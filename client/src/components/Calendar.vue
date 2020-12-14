@@ -57,7 +57,6 @@
     },
     methods: {
       dateDisabled(ymd, date) {
-        console.log(this.$route.params.id)
         // Disable weekends (Sunday = `0`, Saturday = `6`).
         const weekday = date.getDay()
         // Return `true` if the date should be disabled
@@ -97,12 +96,12 @@
     },
   mounted() {
     this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
-    this.$mqtt.subscribe('dentistimo/appointments')
+    this.$mqtt.subscribe('dentistimo/appointments/office')
   },
   mqtt: {
-    'dentistimo/appointments' (data) {
+    'dentistimo/appointments/office' (data) {
       this.appointments = JSON.parse(data)
-      console.log(this.appointments)
+      console.log('YEBOI: ' + this.appointments)
     }
   },
   }
