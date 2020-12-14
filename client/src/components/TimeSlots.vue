@@ -55,8 +55,12 @@
       </b-button-group>
     </div>
 
-    <div v-if="this.appointmentData.success === true">
-      <p>Your booking on {{this.appointmentData.time}} has been made sucessfully!</p>
+    <div class="response" v-if="this.appointmentData.success === true">
+      <p>Your appointment on {{this.appointmentData.time}} has been made successfully!</p>
+    </div>
+
+    <div class="response" v-if="this.appointmentData.success === false">
+      <p> Your appointment could not be made. Refresh the page and try again. </p>
     </div>
 
     <div id="form-div">
@@ -187,6 +191,10 @@ h2 {
 
 #form-div {
   margin-bottom: 5em;
+}
+
+.response {
+  margin-top: 1.5em;
 }
 
 </style>
