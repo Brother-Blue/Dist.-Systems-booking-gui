@@ -80,6 +80,7 @@ export default {
   mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAllTimeslots'}))
     this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+    this.$mqtt.subscribe('dentistimo/appointments/response')
   },
   mqtt: {
    'dentistimo/dentists/offices/timeslots' (data) {
@@ -95,8 +96,10 @@ export default {
           this.thursdayslots = this.office[i].timeslots.thursday;
           this.fridayslots = this.office[i].timeslots.friday;
         }  
-
       }
+    },
+    'dentistimo/appointments/response' (data) {
+      this.appointmentData = JSON.parse(data)
     }
   },
   data() {
@@ -108,7 +111,8 @@ export default {
       wednesdayslots: [],
       thursdayslots: [],
       fridayslots: [],
-      timeSlot: ''
+      timeSlot: '',
+      appointmentData: ''
     }
   },
   methods: {
