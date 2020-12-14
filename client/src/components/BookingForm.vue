@@ -76,7 +76,7 @@
     ],
     data() {
       return {
-        dateTime: this.value + " " + this.selectedTime,
+        dateTime: '',
         form: {
           emailaddress: '',
           name: '',
@@ -87,7 +87,8 @@
     methods: {
 
       publishForm() {
-
+      
+        dateTime = this.value + " " + this.selectedTime
         let dateIssuance = new Date();
         let timeIssuance = dateIssuance.getTime();
 
