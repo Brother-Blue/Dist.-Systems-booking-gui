@@ -2,14 +2,13 @@
 <b-container>
   <div id="home">
     <div id="table-div">
-        <h1> Book a time!</h1>
-        <h3> Insert dentist name here </h3>
+        <h1> Book a time at {{office[0].name}}!</h1>
     </div>
 
     <div>
       <Calendar
       id="calendar"
-      />
+      :office="office"/>
     </div>
   </div>
 </b-container>
@@ -22,7 +21,22 @@ export default {
   name: 'Booking',
   components: {
     Calendar
-  }
+  },
+  data() {
+    return {
+      office: ''
+    }
+  },
+  mounted() {
+    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne', 'id': `${this.$route.params.id}`}))
+    this.$mqtt.subscribe('dentistimo/dentists/dentist')
+  },
+  mqtt: {
+   'dentistimo/dentists/dentist' (data) {
+      var jsonData = JSON.parse(data)
+      this.office = jsonData
+    }
+  },
 }
 </script>
 
