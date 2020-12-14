@@ -14,11 +14,12 @@
        >
        </b-calendar>
     </b-col>
-    <p>{{value}}</p>
   </b-row>
   <TimeSlots
   :timeslotDay="timeslotDay"
-  :value="value"/>
+  :value="value"
+  :removeDate="removeDate"
+  ref="lolxd"/>
 
 </b-container>
 </template>
@@ -31,6 +32,9 @@
   components: {
     TimeSlots
   },
+  props: [
+    'office'
+  ],
     data() {
     const date = new Date()
     const today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
@@ -52,7 +56,8 @@
         thursday: 4,
         friday: 5,
         timeslotDay: '',
-        appointments: ''
+        appointments: '',
+        removeDate: ''
       }
     },
     methods: {
@@ -63,10 +68,32 @@
         return weekday === 0 || weekday === 6
       },
       showTimeslots(date) {
+
+        this.$refs.lolxd.updateTimeSlot()
         // getDay() returns a value representaing the day of the week, sunday=0, monday=1...saturday=6
-        console.log(date);
         const daySelected = new Date(date).getDay()
 
+        let busyDate = []
+        for ( let i = 0 ; i < this.appointments.length ; i++ ) {
+          let time = this.appointments[i].time.split(" ");
+          if ( time[0] === date) {
+            busyDate.push(time[1])
+          }
+        }
+        if ( this.office[0].dentists > 1 ) {
+          for ( let i = 0 ; i < busyDate.length ; i++ ) {
+            let counter = 0;
+            for ( let k = 1 ; k < busyDate.length ; k++ ) {
+              if ( busyDate[i] === busyDate[k] ) {
+                counter++;
+              }
+            }
+            if ( counter >= this.office[0].detists) {
+              this.removeDate.push(busyDate[i])
+              console.log('busy date in calender: ' + busyDate[i])
+            }
+          }
+        }
         //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
         
         if(daySelected === this.monday) {
@@ -91,7 +118,6 @@
         } else {
           //some sort of error logging.
         }
-        console.log(daySelected);
       }
     },
   mounted() {
@@ -101,7 +127,6 @@
   mqtt: {
     'dentistimo/appointments/office' (data) {
       this.appointments = JSON.parse(data)
-      console.log('YEBOI: ' + this.appointments)
     }
   },
   }
