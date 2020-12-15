@@ -18,8 +18,7 @@
   <TimeSlots
   :timeslotDay="timeslotDay"
   :value="value"
-  :removeDate="removeDate"
-  ref="lolxd"/>
+  :timeslots="timeslots"/>
 
 </b-container>
 </template>
@@ -56,8 +55,7 @@
         thursday: 4,
         friday: 5,
         timeslotDay: '',
-        appointments: '',
-        removeDate: ''
+        timeslots: ''
       }
     },
     methods: {
@@ -68,34 +66,12 @@
         return weekday === 0 || weekday === 6
       },
       showTimeslots(date) {
-
-        this.$refs.lolxd.updateTimeSlot()
+        this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': `${this.$route.params.id}`, 'date': this.value}))
         // getDay() returns a value representaing the day of the week, sunday=0, monday=1...saturday=6
+
+        //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
         const daySelected = new Date(date).getDay()
 
-        let busyDate = []
-        for ( let i = 0 ; i < this.appointments.length ; i++ ) {
-          let time = this.appointments[i].time.split(" ");
-          if ( time[0] === date) {
-            busyDate.push(time[1])
-          }
-        }
-        if ( this.office[0].dentists > 1 ) {
-          for ( let i = 0 ; i < busyDate.length ; i++ ) {
-            let counter = 0;
-            for ( let k = 1 ; k < busyDate.length ; k++ ) {
-              if ( busyDate[i] === busyDate[k] ) {
-                counter++;
-              }
-            }
-            if ( counter >= this.office[0].detists) {
-              this.removeDate.push(busyDate[i])
-              console.log('busy date in calender: ' + busyDate[i])
-            }
-          }
-        }
-        //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
-        
         if(daySelected === this.monday) {
           this.timeslotDay = "monday";
         }
@@ -123,10 +99,14 @@
   mounted() {
     this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
     this.$mqtt.subscribe('dentistimo/appointments/office')
+    this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
   },
   mqtt: {
     'dentistimo/appointments/office' (data) {
       this.appointments = JSON.parse(data)
+    },
+    'dentistimo/dentists/offices/timeslots' (data) {
+      this.timeslots = JSON.parse(data)
     }
   },
   }
