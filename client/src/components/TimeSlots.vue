@@ -4,8 +4,8 @@
       <h2 class="headers">Monday</h2>
       <b-button-group class="timeslots">
       <b-row>
-      <b-col cols="12" md="3" lg="2" v-for="mondayslot in mondayslots" v-bind:key="mondayslot" align-h="center">
-        <b-button class="time-button" v-on:click="bookTimeSlot(mondayslot)" variant="outline-primary">{{ mondayslot }}</b-button>
+      <b-col cols="12" md="3" lg="2" v-for="timeslots in timeslots" v-bind:key="timeslots" align-h="center">
+        <b-button class="time-button" v-on:click="bookTimeSlot(timeslots)" variant="outline-primary">{{ timeslots }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -15,8 +15,8 @@
       <h2 class="headers">Tuesday</h2>
       <b-button-group class="timeslots">
       <b-row>
-      <b-col cols="12" md="3" lg="2" v-for="tuesdayslot in tuesdayslots" v-bind:key="tuesdayslot" align-h="center">
-        <b-button class="time-button" v-on:click="bookTimeSlot(tuesdayslot)" variant="outline-primary">{{ tuesdayslot }}</b-button>
+      <b-col cols="12" md="3" lg="2" v-for="timeslots in timeslots" v-bind:key="timeslots" align-h="center">
+        <b-button class="time-button" v-on:click="bookTimeSlot(timeslots)" variant="outline-primary">{{ timeslots }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -26,8 +26,8 @@
       <h2 class="headers">Wednesday</h2>
       <b-button-group class="timeslots">
       <b-row>
-      <b-col cols="12" md="3" lg="2" v-for="wednesdayslot in wednesdayslots" v-bind:key="wednesdayslot" align-h="center">
-        <b-button class="time-button" v-on:click="bookTimeSlot(wednesdayslot)" variant="outline-primary">{{ wednesdayslot }}</b-button>
+      <b-col cols="12" md="3" lg="2" v-for="timeslots in timeslots" v-bind:key="timeslots" align-h="center">
+        <b-button class="time-button" v-on:click="bookTimeSlot(timeslots)" variant="outline-primary">{{ timeslots }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -37,8 +37,8 @@
       <h2 class="headers">Thursday</h2>
       <b-button-group class="timeslots">
       <b-row>
-      <b-col cols="12" md="3" lg="2" v-for="thursdayslot in thursdayslots" v-bind:key="thursdayslot" align-h="center">
-        <b-button class="time-button" v-on:click="bookTimeSlot(thursdayslot)" variant="outline-primary">{{ thursdayslot }}</b-button>
+      <b-col cols="12" md="3" lg="2" v-for="timeslots in timeslots" v-bind:key="timeslots" align-h="center">
+        <b-button class="time-button" v-on:click="bookTimeSlot(timeslots)" variant="outline-primary">{{ timeslots }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -48,8 +48,8 @@
       <h2 class="headers">Friday</h2>
       <b-button-group class="timeslots">
       <b-row>
-      <b-col cols="12" md="3" lg="2" v-for="fridayslot in fridayslots" v-bind:key="fridayslot" align-h="center">
-        <b-button class="time-button" v-on:click="bookTimeSlot(fridayslot)" variant="outline-primary">{{ fridayslot }}</b-button>
+      <b-col cols="12" md="3" lg="2" v-for="timeslots in timeslots" v-bind:key="timeslots" align-h="center">
+        <b-button class="time-button" v-on:click="bookTimeSlot(timeslots)" variant="outline-primary">{{ timeslots }}</b-button>
       </b-col>
       </b-row>
       </b-button-group>
@@ -66,7 +66,7 @@
     <div id="form-div">
         <BookingForm
         id="form"
-        :selectedTime="timeSlot"
+        :selectedTime="timeslot"
         :value="value"/>
     </div>
     </div>
@@ -83,43 +83,20 @@ export default {
   },
   props: [
       'timeslotDay',
-      'value'
+      'value',
+      'timeslots'
   ],
   mounted() {
-    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAllTimeslots'}))
-    this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
     this.$mqtt.subscribe('dentistimo/appointments/response')
   },
   mqtt: {
-   'dentistimo/dentists/offices/timeslots' (data) {
-      var jsonData = JSON.parse(data)
-      this.office = jsonData
-      
-      for(var i = 0; i < this.office.length; i++){
-
-        if (this.office[i].id == `${this.$route.params.id}`){
-          this.mondayslots = this.office[i].timeslots.monday;
-          this.tuesdayslots = this.office[i].timeslots.tuesday;
-          this.wednesdayslots = this.office[i].timeslots.wednesday;
-          this.thursdayslots = this.office[i].timeslots.thursday;
-          this.fridayslots = this.office[i].timeslots.friday;
-        }  
-      }
-    },
     'dentistimo/appointments/response' (data) {
       this.appointmentData = JSON.parse(data)
     }
   },
   data() {
     return {
-      offices: [],
-      office: '',
-      mondayslots: [],
-      tuesdayslots: [],
-      wednesdayslots: [],
-      thursdayslots: [],
-      fridayslots: [],
-      timeSlot: '',
+      timeslot: '',
       appointmentData: ''
     }
   },
@@ -198,4 +175,3 @@ h2 {
 }
 
 </style>
-

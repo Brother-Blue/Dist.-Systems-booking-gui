@@ -14,11 +14,11 @@
        >
        </b-calendar>
     </b-col>
-    <p>{{value}}</p>
   </b-row>
   <TimeSlots
   :timeslotDay="timeslotDay"
-  :value="value"/>
+  :value="value"
+  :timeslots="timeslots"/>
 
 </b-container>
 </template>
@@ -31,6 +31,9 @@
   components: {
     TimeSlots
   },
+  props: [
+    'office'
+  ],
     data() {
     const date = new Date()
     const today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
@@ -51,7 +54,8 @@
         wednesday: 3,
         thursday: 4,
         friday: 5,
-        timeslotDay: ''
+        timeslotDay: '',
+        timeslots: ''
       }
     },
     methods: {
@@ -62,12 +66,12 @@
         return weekday === 0 || weekday === 6
       },
       showTimeslots(date) {
+        this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': `${this.$route.params.id}`, 'date': this.value}))
         // getDay() returns a value representaing the day of the week, sunday=0, monday=1...saturday=6
-        console.log(date);
-        const daySelected = new Date(date).getDay()
 
         //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
-        
+        const daySelected = new Date(date).getDay()
+
         if(daySelected === this.monday) {
           this.timeslotDay = "monday";
         }
@@ -90,9 +94,21 @@
         } else {
           //some sort of error logging.
         }
-        console.log(daySelected);
       }
+    },
+  mounted() {
+    this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
+    this.$mqtt.subscribe('dentistimo/appointments/office')
+    this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+  },
+  mqtt: {
+    'dentistimo/appointments/office' (data) {
+      this.appointments = JSON.parse(data)
+    },
+    'dentistimo/dentists/offices/timeslots' (data) {
+      this.timeslots = JSON.parse(data)
     }
+  },
   }
 </script>
 
