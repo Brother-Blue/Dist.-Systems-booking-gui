@@ -100,6 +100,7 @@
     this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
     this.$mqtt.subscribe('dentistimo/appointments/office')
     this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+    this.$mqtt.subscribe('dentistimo/appointments/response')
   },
   mqtt: {
     'dentistimo/appointments/office' (data) {
@@ -107,6 +108,17 @@
     },
     'dentistimo/dentists/offices/timeslots' (data) {
       this.timeslots = JSON.parse(data)
+    },
+    'dentistimo/appointments/response' (data) {
+      this.response = JSON.parse(data)
+      console.log(this.response.success)
+      if(this.response.success == true){
+        this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` })) 
+        
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      }
     }
   },
   }
