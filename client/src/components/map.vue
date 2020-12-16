@@ -1,10 +1,21 @@
 <template>
 <div>
+    <div id="calendar_over_map">
+        <b-calendar  class="calendar"
+        start-weekday="1"
+        v-model="value"
+        :date-disabled-fn="dateDisabled"
+        :min="min"
+        :max="max"
+        locale="en-US"
+        @selected="showTimeslots(value)" />
+    </div>
+
     <!-- Google map layout -->
     <GmapMap
     ref="mapRef"
     :center="centerLocation"
-    style="height:47%; width:100%; position:fixed; bottom: 0;"
+    style="height:55%; width:100%; position:fixed; bottom: 0; z-index: -1"
     :zoom="zoom"
     :options="{
         zoomControl: true,
@@ -14,10 +25,10 @@
         minZoom: 5,
         styles: mapStyles}">
 
-        <!-- Dentist marker -->
+        <!-- low Dentist marker -->
         <GmapMarker
-        v-for="(r, index) in offices"
-        :key="index"
+        v-for="(r, index) in lowOffices"
+        :key="index+'l'"
         :position="{
             lat: r.coordinate.latitude,
             lng: r.coordinate.longitude
@@ -25,7 +36,33 @@
         :clickable="true"
         :draggable="false"
         @click="toggleInfoWindow(r,index)"
-        :icon="dentistStyles"/>
+        :icon="lowStyles"/>
+
+        <!-- med Dentist marker -->
+        <GmapMarker
+        v-for="(r, index) in medOffices"
+        :key="index+'m'"
+        :position="{
+            lat: r.coordinate.latitude,
+            lng: r.coordinate.longitude
+        }"
+        :clickable="true"
+        :draggable="false"
+        @click="toggleInfoWindow(r,index)"
+        :icon="medStyles"/>
+
+        <!-- high Dentist marker -->
+        <GmapMarker
+        v-for="(r, index) in highOffices"
+        :key="index+'h'"
+        :position="{
+            lat: r.coordinate.latitude,
+            lng: r.coordinate.longitude
+        }"
+        :clickable="true"
+        :draggable="false"
+        @click="toggleInfoWindow(r,index)"
+        :icon="highStyles"/>
 
         <!-- Dentist info window -->
         <GmapInfoWindow
@@ -43,10 +80,22 @@
 export default {
     props: ['offices'],
     data() {
+        const low = require('../assets/dentist-icon-low.png')
+        const medium = require('../assets/dentist-icon-med.png')
+        const high = require('../assets/dentist-icon-high.png')
+        const date = new Date()
+        const today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+        const minDate = new Date(today)
+        const maxDate = new Date(today)
+        minDate.setMonth(today.getMonth())
+        minDate.setDate(today.getDate())
+        maxDate.setMonth(today.getMonth() + 2)
+        maxDate.setDate(today.getDate())
+
         return {
             zoom: 12,
             centerLocation: {
-                lat: 57.708870,         
+                lat: 57.708870,
                 lng: 11.974560
             },
             infoWindowPos: null,
@@ -59,13 +108,31 @@ export default {
                     height: -35
                 }
             },
-            dentistStyles: {
-                url: require('../assets/dentist-icon.svg'),
+            lowStyles: {
+                url: low,
                 scaledSize: {
                     width: 50,
                     height: 50,
                     f: 'px',
-                    b: 'px'
+                    b: 'px',
+                }
+            },
+            medStyles: {
+                url: medium,
+                scaledSize: {
+                    width: 50,
+                    height: 50,
+                    f: 'px',
+                    b: 'px',
+                }
+            },
+            highStyles: {
+                url: high,
+                scaledSize: {
+                    width: 50,
+                    height: 50,
+                    f: 'px',
+                    b: 'px',
                 }
             },
             mapStyles: [
@@ -291,7 +358,16 @@ export default {
                         }
                     ]
                 }
-            ]
+            ],
+            value: new Date().toISOString().slice(0,10),
+            day: '',
+            min: minDate,
+            max: maxDate,
+            timeslotDay: '',
+            office: 0,
+            lowOffices: [],
+            medOffices: [],
+            highOffices: []
         }
     },
     methods: {
@@ -313,7 +389,7 @@ export default {
                 }
             },
             getInfoWindowContent: function (offices) {
-                return (`  
+                return (`
                     <div>
                         <a href="booking/${offices.id}"><h3 style="font-size: 22px;color:black; margin-top: 0.5em; font-family: 'Libre Baskerville', serif;">${offices.name}</h3></a>
                         <p style="font-size:18px;">${offices.address}</p>
@@ -321,17 +397,64 @@ export default {
                         <p style="font-size:14px;;margin:4px;">Tuesday: ${offices.openinghours.tuesday}</p>
                         <p style="font-size:14px;;margin:4px;">Wednesday: ${offices.openinghours.wednesday}</p>
                         <p style="font-size:14px;;margin:4px;">Thursday: ${offices.openinghours.thursday}</p>
-                        <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p>
+                        <p style="font-size:14px;;margin:4px;">Friday: ${offices.openinghours.friday}</p><br>
+                        <u><p style="font-size:14px;;margin:0px;">${offices.availibilty} available times</p></u>
                         <form action="booking/${offices.id}">
                             <button style="margin: 0.75em; font-size: 18px; font-family: 'Libre Baskerville', serif; background-color:#66A182; padding: 4px; color: white; border-radius: 20px; padding-left: 10px; padding-right: 10px;
                             ">Book a time!</button>
                         </form>
                     </div>`)
+            },
+            dateDisabled(ymd, date) {
+                // Disable weekends (Sunday = `0`, Saturday = `6`).
+                const weekday = date.getDay()
+                // Return `true` if the date should be disabled
+                return weekday === 0 || weekday === 6
+            },
+            showTimeslots() {
+                this.infoWinOpen = false
+                this.office = 0;
+                for ( let i = 0; i < this.offices.length; i++) {
+                    this.offices[i].availibilty = 0;
+                    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': this.offices[i].id, 'date': this.value}))
+                }
+            },
+            parseOffices(office) {
+                    if ( office.availibilty <= 5 ) this.lowOffices.push(office)
+                    else if ( office.availibilty <= 10 ) this.medOffices.push(office)
+                    else this.highOffices.push(office)
             }
+    },
+    mounted() {
+        this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+        this.$mqtt.subscribe('dentistimo/appointments/response')
+        setTimeout(() => {
+            this.showTimeslots()
+        }, 500)
 
-    }
+       
+    },
+    mqtt: {
+        'dentistimo/appointments/office' (data) {
+            this.appointments = JSON.parse(data)
+        },
+        'dentistimo/dentists/offices/timeslots' (data) {
+            this.offices[this.office].availibilty = JSON.parse(data).length
+            this.parseOffices(this.offices[this.office]);
+            this.office++;
+
+        },
+        'dentistimo/appointments/response' (data) {
+            this.response = JSON.parse(data)
+            console.log(this.response.success)
+            if(this.response.success == true){
+                this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
+            }
+        }
+    },
 }
 </script>
 
 <style scoped>
+#calendar_over_map { position: fixed; bottom: 25px; left: 15px; z-index: 99; background-color: white }
 </style>
