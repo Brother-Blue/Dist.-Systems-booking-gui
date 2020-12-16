@@ -32,7 +32,6 @@ export default {
   mqtt: {
     'dentistimo/dentists' (data) {
       this.offices = JSON.parse(data)
-      console.log(this.offices)
     }
   },
   data() {
