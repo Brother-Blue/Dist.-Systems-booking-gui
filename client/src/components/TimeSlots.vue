@@ -66,7 +66,7 @@
     <div id="form-div">
         <BookingForm
         id="form"
-        :selectedTime="timeslot"
+        :selectedTime="selectedTime"
         :value="value"/>
     </div>
     </div>
@@ -97,13 +97,14 @@ export default {
   data() {
     return {
       timeslot: '',
-      appointmentData: ''
+      appointmentData: '',
+      selectedTime: ''
     }
   },
   methods: {
-    bookTimeSlot(timeslot){
-      this.timeSlot = timeslot;
-      console.log("here is the slot:" + this.timeSlot);
+    bookTimeSlot(selectedTime){
+      this.selectedTime = selectedTime;
+      console.log("here is the slot:" + this.selectedTime);
     }
   }
 }
