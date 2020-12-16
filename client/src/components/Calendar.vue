@@ -115,9 +115,6 @@
       if(this.response.success == true){
         this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` })) 
         
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
       }
     }
   },
