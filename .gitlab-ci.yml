@@ -8,5 +8,5 @@ build:
   tags:
     - docker
   script:
-    - cd server
+    - cd client
     - npm install
