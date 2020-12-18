@@ -23,7 +23,20 @@ import Office from '../components/Office.vue'
 export default {
     name: 'Offices',
     components: {
-    Office
+    Office: [
+      {
+        name = '',
+        address = '',
+        id = '',
+        openinghours = [
+          monday = '',
+          tuesday = '',
+          wednesday = '',
+          thursday = '',
+          friday = '',
+        ]
+      }
+    ]
   },
     mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAll'}))
@@ -32,8 +45,23 @@ export default {
   mqtt: {
    'dentistimo/dentists' (data) {
       var jsonData = JSON.parse(data)
-      this.office = jsonData
+      for (let i = 0; i < jsonData.length; i++) {
+        try {
+          this.office[i].name = jsonData[i].name
+          this.office[i].address = jsonData[i].address
+          this.office[i].id = jsonData[i].id
+          this.office[i].openinghours.monday = jsonData[i].openinghours.monday
+          this.office[i].openinghours.tuesday = jsonData[i].openinghours.tuesday
+          this.office[i].openinghours.wednesday = jsonData[i].openinghours.wednesday
+          this.office[i].openinghours.thursday = jsonData[i].openinghours.thursday
+          this.office[i].openinghours.friday = jsonData[i].openinghours.friday
+
+        } catch {
+          let message = 'Out of bounds excpetion in bookingGUI. ill-formatted data recieved from topic: dentistimo/dentists'
+          this.$mqtt.publish('dentistimo/log/error', message)
+        }
     }
+   }
   },
   data() {
       return {
