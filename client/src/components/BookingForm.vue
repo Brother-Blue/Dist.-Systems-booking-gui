@@ -25,6 +25,7 @@
           required
           placeholder="Enter email"
         ></b-form-input>
+
       </b-col>
       </b-row>
 
@@ -38,7 +39,14 @@
           v-model="form.name"
           required
           placeholder="Enter Your Name"
+          :state="nameState"
+          aria-describedby="input-error-name"
         ></b-form-input>
+
+        <b-form-invalid-feedback id="input-error-name">
+        Please enter your full name.
+        </b-form-invalid-feedback>
+
         </b-col>
         </b-row>
 
@@ -53,13 +61,19 @@
           type="password"
           required
           placeholder="Enter Social Security Number"
+          :state="ssnState"
+          aria-describedby="input-error-ssn"
         ></b-form-input>
+
+        <b-form-invalid-feedback id="input-error-ssn">
+          Please enter your ssn in the format YYYYDDMMXXXX
+        </b-form-invalid-feedback>
+
         </b-col>
         </b-row>
-
-      <!-- <b-button id="contact" type="submit" variant="primary" v-on:click="publishForm();">Submit</b-button> -->
     </b-form>
-    <b-button id="contact" type="submit" variant="primary" v-on:click="publishForm();">Submit</b-button>
+    <b-button v-if="ssnState === false || nameState === false" id="contact" type="submit" variant="primary" v-on:click="publishForm();" disabled>Submit</b-button>
+    <b-button v-if="ssnState === true && nameState === true" id="contact" type="submit" variant="primary" v-on:click="publishForm();">Submit</b-button>
   </div>
 </b-container>
 </template>
@@ -81,7 +95,18 @@
           emailaddress: '',
           name: '',
           ssn: ''
-        }
+        }, 
+      }
+    },
+    computed: {
+      nameState() {
+        return this.form.name.length > 2 ? true : false
+      },
+      ssnState() {
+        return this.form.ssn.length === 12 ? true : false
+      },
+      emailState() {
+        return this.form.emailaddress.length > 10 ? true : false
       }
     },
     methods: {
@@ -93,18 +118,15 @@
         let timeIssuance = dateIssuance.getTime();
 
         console.log("Date and Time is: " + this.dateTime)
-
         this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': uuid.v4(), 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}))
-
         this.form.name = '';
         this.form.ssn = '';
+      },
+
+      formatter(value) {
+        return String(value.toLowerCase())
       }
     },
-    mqtt: {
-      'dentistimo/appointments' (data, topic) {
-        console.log(topic + ': ' + String.fromCharCode.apply(null, data))
-      }
-    }
 }
 </script>
 
