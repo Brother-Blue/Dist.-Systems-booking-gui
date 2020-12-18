@@ -103,7 +103,14 @@
   },
   mqtt: {
     'dentistimo/appointments/office' (data) {
-      this.appointments = JSON.parse(data)
+      let jsonData = JSON.parse(data)
+      if(jsonData != null) {
+        this.appointments = jsonData
+      }else {
+        console.log("empty jsonString recieved")
+        let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
+        this.$mqtt.publish('dentistimo/log/error', message)
+      }
     },
     'dentistimo/dentists/offices/timeslots' (data) {
       this.timeslots = JSON.parse(data)

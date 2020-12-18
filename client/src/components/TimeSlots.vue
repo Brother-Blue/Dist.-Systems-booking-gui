@@ -93,7 +93,7 @@ export default {
     'dentistimo/appointments/response' (data) {
       let jsonData = JSON.parse(data)
       if(jsonData != null){
-        this.appointmentData = JSON.parse(data)
+        this.appointmentData = jsonData
       }else{
         console.log("empty jsonString recieved")
         let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
