@@ -25,16 +25,16 @@ export default {
     components: {
     Office: [
       {
-        name = '',
-        address = '',
-        id = '',
-        openinghours = [
-          monday = '',
-          tuesday = '',
-          wednesday = '',
-          thursday = '',
-          friday = '',
-        ]
+        name: '',
+        address: '',
+        id: '',
+        openinghours: {
+          monday: '',
+          tuesday: '',
+          wednesday: '',
+          thursday: '',
+          friday: '',
+        }
       }
     ]
   },
