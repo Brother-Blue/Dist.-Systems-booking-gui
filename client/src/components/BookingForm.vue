@@ -130,11 +130,6 @@
         return String(value.toLowerCase())
       }
     },
-    mqtt: {
-      'dentistimo/appointments' (data, topic) {
-        console.log(topic + ': ' + String.fromCharCode.apply(null, data))
-      }
-    }
 }
 </script>
 
