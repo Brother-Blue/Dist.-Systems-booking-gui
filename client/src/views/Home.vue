@@ -31,7 +31,14 @@ export default {
   },
   mqtt: {
     'dentistimo/dentists' (data) {
-      this.offices = JSON.parse(data)
+      let jsonData = JSON.parse(data)
+      if(jsonData != null){
+        this.offices = jsonData
+      }else{
+        console.log("empty jsonString recieved")
+        let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
+        this.$mqtt.publish('dentistimo/log/error', message)
+      }
     }
   },
   data() {
