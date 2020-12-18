@@ -23,20 +23,7 @@ import Office from '../components/Office.vue'
 export default {
     name: 'Offices',
     components: {
-    Office: [
-      {
-        name: '',
-        address: '',
-        id: '',
-        openinghours: {
-          monday: '',
-          tuesday: '',
-          wednesday: '',
-          thursday: '',
-          friday: '',
-        }
-      }
-    ]
+    Office
   },
     mounted() {
     this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAll'}))
@@ -66,7 +53,18 @@ export default {
   data() {
       return {
           offices: [],
-          office: '',
+          office: {
+            name: '',
+            address: '',
+            id: '',
+            openinghours: {
+              monday: '',
+              tuesday: '',
+              wednesday: '',
+              thursday: '',
+              friday: '',
+            }
+        },
           fields: [{
                 key: 'name',
                 label: 'Office'
