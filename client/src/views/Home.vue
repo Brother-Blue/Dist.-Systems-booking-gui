@@ -1,16 +1,17 @@
 <template>
   <div id="home">
     <b-col>
-      <p id="dentisimo" class="headlines"> Dentistimo</p>
-      <p id="available" class="headlines">Your <span id="available"> available </span> local dentist office</p>
+      <p id="dentisimo" class="headlines">Dentistimo</p>
+      <p id="available" class="headlines">
+        Your <span id="available"> available </span> local dentist office
+      </p>
       <b-button id="book" v-bind:href="'/booking/'">BOOK A TIME</b-button>
       <p id="or">or</p>
       <p id="find">FIND US HERE</p>
-    
+
       <b-row align-h="left">
         <div id="map-div">
-          <Map id="map" ref="Map"
-          :offices="offices"/>
+          <Map id="map" ref="Map" :offices="offices" />
         </div>
       </b-row>
     </b-col>
@@ -18,55 +19,59 @@
 </template>
 
 <script>
-import Map from '../components/map.vue'
+import Map from "../components/map.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Map
+    Map,
   },
   mounted() {
-    this.$mqtt.on('close', (err) => {
-      if(err) console.log(err)
-      console.log('close')
-      this.$mqtt.unsubscribe('dentistimo/dentists')
-    })
-    this.$mqtt.on('offline', (err) => {
-      if(err) console.log(err)
-      console.log('offline')
-      this.$mqtt.unsubscribe('dentistimo/dentists')
-    })
+    this.$mqtt.on("close", (err) => {
+      if (err) console.log(err);
+      console.log("close");
+      this.$mqtt.unsubscribe("dentistimo/dentists");
+    });
+    this.$mqtt.on("offline", (err) => {
+      if (err) console.log(err);
+      console.log("offline");
+      this.$mqtt.unsubscribe("dentistimo/dentists");
+    });
 
-    this.$mqtt.on('connect', (connack) => {
-      if(connack.sessionPresent == false){
-      this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}), 1)
-      this.$mqtt.subscribe('dentistimo/dentists')
+    this.$mqtt.on("connect", (connack) => {
+      if (connack.sessionPresent == false) {
+        this.$mqtt.publish(
+          "dentistimo/dentistoffice",
+          JSON.stringify({ method: "getAll" }),
+          1
+        );
+        this.$mqtt.subscribe("dentistimo/dentists");
       }
-    })
-
+    });
   },
   mqtt: {
-    'dentistimo/dentists' (data) {
-      let jsonData = JSON.parse(data)
-      if(jsonData != null){
-        this.offices = jsonData
-      }else{
-        console.log("empty jsonString recieved")
-        let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
-        this.$mqtt.publish('dentistimo/log/error', message, 2)
+    "dentistimo/dentists"(data) {
+      let jsonData = JSON.parse(data);
+      if (jsonData != null) {
+        this.offices = jsonData;
+      } else {
+        console.log("empty jsonString recieved");
+        let message =
+          "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists ";
+        this.$mqtt.publish("dentistimo/log/error", message, 2);
       }
-    }
+    },
   },
   data() {
     return {
       offices: [],
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap");
 
 #home {
   font-family: serif;
@@ -78,15 +83,15 @@ export default {
 }
 
 #available {
-    font-style: italic;
+  font-style: italic;
 }
 
 #decription {
-    margin: 2em;
+  margin: 2em;
 }
 
 .headlines {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 #dentisimo {
@@ -101,10 +106,10 @@ export default {
   border-radius: 30px;
   margin-top: 2.25em;
   padding: 18px 50px;
-  background-color:#e98d58;
+  background-color: #e98d58;
   border: #e98d58;
   font-size: 20px;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 #book:hover {
@@ -112,7 +117,7 @@ export default {
 }
 
 p {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 #or {
@@ -130,5 +135,4 @@ p {
   margin-right: auto;
   margin-left: auto;
 }
-
 </style>
