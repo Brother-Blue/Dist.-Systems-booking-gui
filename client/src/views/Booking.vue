@@ -28,8 +28,23 @@ export default {
     }
   },
   mounted() {
-    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne', 'id': `${this.$route.params.id}`}))
-    this.$mqtt.subscribe('dentistimo/dentists/dentist')
+    this.$mqtt.on('close', (err) => {
+      if(err) console.log(err)
+      console.log('close')
+      this.$mqtt.unsubscribe('dentistimo/dentists/dentist')
+    })
+    this.$mqtt.on('offline', (err) => {
+      if(err) console.log(err)
+      console.log('offline')
+      this.$mqtt.unsubscribe('dentistimo/dentists/dentist')
+    })
+    this.$mqtt.on('connect', (connack) => {
+      if(connack.sessionPresent == false){
+      this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getOne', 'id': `${this.$route.params.id}`}))
+      this.$mqtt.subscribe('dentistimo/dentists/dentist')
+      }
+    })
+
   },
   mqtt: {
    'dentistimo/dentists/dentist' (data) {
