@@ -26,8 +26,24 @@ export default {
     Office
   },
     mounted() {
-    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAll'}))
-    this.$mqtt.subscribe('dentistimo/dentists')
+      this.$mqtt.on('close', (err) => {
+        if(err) console.log(err)
+        console.log('close')
+        this.$mqtt.unsubscribe('dentistimo/dentists')
+      })
+    this.$mqtt.on('offline', (err) => {
+      if(err) console.log(err)
+      console.log('offline')
+      this.$mqtt.unsubscribe('dentistimo/dentists')
+    })
+    this.$mqtt.on('connect', (connack) => {
+      if(connack.sessionPresent == false){
+      this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getAll'}))
+      this.$mqtt.subscribe('dentistimo/dentists')
+      }
+    })
+
+
   },
   mqtt: {
    'dentistimo/dentists' (data) {
