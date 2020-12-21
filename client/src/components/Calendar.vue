@@ -97,28 +97,9 @@
       }
     },
   mounted() {
-    this.$mqtt.on('close', (err) => {
-      if(err) console.log(err)
-      console.log('close')
-      this.$mqtt.unsubscribe('dentistimo/appointments/office')
-      this.$mqtt.unsubscribe('dentistimo/dentists/offices/timeslots')
-      this.$mqtt.unsubscribe('dentistimo/appointments/response')
-    })
-    this.$mqtt.on('offline', (err) => {
-      if(err) console.log(err)
-      console.log('offline')
-      this.$mqtt.unsubscribe('dentistimo/appointments/office')
-      this.$mqtt.unsubscribe('dentistimo/dentists/offices/timeslots')
-      this.$mqtt.unsubscribe('dentistimo/appointments/response')
-    })
-
-    this.$mqtt.on('connect', (connack) => {
-      if(connack.sessionPresent == false){
-        this.$mqtt.subscribe('dentistimo/appointments/office')
-        this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
-        this.$mqtt.subscribe('dentistimo/appointments/response')
-      }
-    })
+    this.$mqtt.subscribe('dentistimo/appointments/office')
+    this.$mqtt.subscribe('dentistimo/dentists/offices/timeslots')
+    this.$mqtt.subscribe('dentistimo/appointments/response')
   },
   mqtt: {
     'dentistimo/appointments/office' (data) {
