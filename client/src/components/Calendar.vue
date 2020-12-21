@@ -66,7 +66,7 @@
         return weekday === 0 || weekday === 6
       },
       showTimeslots(date) {
-        this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': `${this.$route.params.id}`, 'date': this.value}))
+        this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': `${this.$route.params.id}`, 'date': this.value}), 1)
         // getDay() returns a value representaing the day of the week, sunday=0, monday=1...saturday=6
 
         //series of if statements checking what day was seleceted. this.weekday represents an int value equal to that day.
@@ -109,7 +109,7 @@
       }else {
         console.log("empty jsonString recieved")
         let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
-        this.$mqtt.publish('dentistimo/log/error', message)
+        this.$mqtt.publish('dentistimo/log/error', message, 2)
       }
     },
     'dentistimo/dentists/offices/timeslots' (data) {
@@ -119,7 +119,7 @@
       }else {
         console.log("empty jsonString recieved")
         let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
-        this.$mqtt.publish('dentistimo/log/error', message)
+        this.$mqtt.publish('dentistimo/log/error', message, 2)
       }
     }
   }

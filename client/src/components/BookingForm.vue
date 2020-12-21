@@ -118,7 +118,7 @@
         let timeIssuance = dateIssuance.getTime();
 
         console.log("Date and Time is: " + this.dateTime)
-        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': uuid.v4(), 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}))
+        this.$mqtt.publish('dentistimo/appointments', JSON.stringify({'method': 'add', 'userid': this.form.ssn, 'requestid': uuid.v4(), 'dentistid': `${this.$route.params.id}`, 'issuance': timeIssuance, 'time': this.dateTime, 'name': this.form.name, 'emailaddress': this.form.email}), 2)
         this.form.name = '';
         this.form.ssn = '';
       },

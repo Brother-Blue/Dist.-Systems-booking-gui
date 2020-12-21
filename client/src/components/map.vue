@@ -416,7 +416,7 @@ export default {
                 this.office = 0;
                 for ( let i = 0; i < this.offices.length; i++) {
                     this.offices[i].availibilty = 0;
-                    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': this.offices[i].id, 'date': this.value}))
+                    this.$mqtt.publish('dentistimo/dentistoffice', JSON.stringify({'method': 'getTimeSlots', 'id': this.offices[i].id, 'date': this.value}), 1)
                 }
             },
             parseOffices(office) {
@@ -448,7 +448,7 @@ export default {
             this.response = JSON.parse(data)
             console.log(this.response.success)
             if(this.response.success == true){
-                this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }))
+                this.$mqtt.publish('dentistimo/appointments',JSON.stringify({ 'method': 'getOffice', 'dentistid': `${this.$route.params.id}` }), 1)
             }
         }
     },

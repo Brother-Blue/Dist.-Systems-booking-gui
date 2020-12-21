@@ -39,7 +39,7 @@ export default {
 
     this.$mqtt.on('connect', (connack) => {
       if(connack.sessionPresent == false){
-      this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}))
+      this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}), 1)
       this.$mqtt.subscribe('dentistimo/dentists')
       }
     })
@@ -53,7 +53,7 @@ export default {
       }else{
         console.log("empty jsonString recieved")
         let message = "empty mqtt jsonString sent to bookingGUI via the broker. on topic: dentistimo/dentists "
-        this.$mqtt.publish('dentistimo/log/error', message)
+        this.$mqtt.publish('dentistimo/log/error', message, 2)
       }
     }
   },
