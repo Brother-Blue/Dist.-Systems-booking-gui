@@ -105,17 +105,16 @@ export default {
     };
   },
   computed: {
+    // These methods check if the required format has been input into the fields.
     nameState() {
       return this.form.name.length > 2 ? true : false;
     },
     ssnState() {
       return this.form.ssn.length === 12 ? true : false;
-    },
-    emailState() {
-      return this.form.emailaddress.length > 10 ? true : false;
-    },
+    }
   },
   methods: {
+    // This method will publish an appointment with the data provided in the booking form.
     publishForm() {
       this.dateTime = this.value + " " + this.selectedTime;
       let dateIssuance = new Date();
@@ -138,11 +137,7 @@ export default {
       );
       this.form.name = "";
       this.form.ssn = "";
-    },
-
-    formatter(value) {
-      return String(value.toLowerCase());
-    },
+    }
   },
 };
 </script>

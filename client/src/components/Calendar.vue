@@ -108,6 +108,7 @@ export default {
     this.$mqtt.subscribe("dentistimo/appointments/response");
   },
   mqtt: {
+    // Retrives the appointments for a specific office.
     "dentistimo/appointments/office"(data) {
       let jsonData = JSON.parse(data);
       if (jsonData != null) {
@@ -119,6 +120,7 @@ export default {
         this.$mqtt.publish("dentistimo/log/error", message, 2);
       }
     },
+    // Retrieves the timeslots for a specific dentist office.
     "dentistimo/dentists/offices/timeslots"(data) {
       let jsonData = JSON.parse(data);
       if (jsonData != null) {
