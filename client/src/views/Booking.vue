@@ -48,6 +48,7 @@ export default {
     });
   },
   mqtt: {
+    // Retrieves the data from a specific dentist office.
     "dentistimo/dentists/dentist"(data) {
       var jsonData = JSON.parse(data);
       if (jsonData != null) {
