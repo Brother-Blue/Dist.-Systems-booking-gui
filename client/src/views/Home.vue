@@ -38,11 +38,10 @@ export default {
     })
 
     this.$mqtt.on('connect', (connack) => {
-    if(connack.sessionPresent == false){
-    this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}))
-    this.$mqtt.subscribe('dentistimo/dentists')
-    }
-
+      if(connack.sessionPresent == false){
+      this.$mqtt.publish('dentistimo/dentistoffice',JSON.stringify({ 'method': 'getAll'}))
+      this.$mqtt.subscribe('dentistimo/dentists')
+      }
     })
 
   },
