@@ -10,7 +10,7 @@ Via the pins on the map or the "Go to the office"-button on the Offices-page, on
 All communication between the BookingGUI and the rest of the system is done via a broker, using the MQTT-protocol applying a Publish/Subscribe architectural style. 
 
 ### How to run
-1. Navigate to the CLient folder in the repository
+1. Navigate to the Client folder in the repository
 1. Open terminal and run "npm install"
 1. Run "npm run serve"
 1. The BookingGUI is now running on port 8080
