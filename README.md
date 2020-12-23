@@ -1,30 +1,17 @@
-# UI
+## BookingGUI High-level description 
 
-# Table of contents
-1. [Purpose](#purpose)
-    1. [What](#what)
-    2. [Why](#why)
-    2. [How](#how)
-2. [Requirements (SRS)](#requirements)
-3. [Architecture (SAD)](#architecture)
-4. [Developers](#developers)
+The BookingGUI conists of three views each with its own responsibility. The Homepage displays a navigable map where all dentist offices are shown as pins. The pins change color indicating available timeslots at each dentist registry for the date specified by the user. 
 
-## Purpose <a name="purpose"></a>
-### What are you going to make? <a name="what"></a>
+Clicking the "Book a time"-button on the homepage will redirect the user to an overview of all the dentist offices. This page displays all relevant information about the dentist offices. 
 
-### Why will you make it? <a name="why"></a>
+Via the pins on the map or the "Go to the office"-button on the Offices-page, one can go to the Booking-page where a calender is shown as well as a booking-form. By clicking a date on the calender all available timeslots for that day will be displayed. When information has been entered into all fields a user can submit the booking request. A message will be shown to the user depending whether the appointment booking was succefull or not. 
 
-### How are you going to make it? <a name="how"></a>
+### Communication
+All communication between the BookingGUI and the rest of the system is done via a broker, using the MQTT-protocol applying a Publish/Subscribe architectural style. 
 
-## Requirements (SRS) <a name="requirements"></a>
-
-## Architecture (SAD) <a name="architecture"></a>
-
-## Developers <a name="developers"></a>
-
-- [Clementine Jensen](https://github.com/clementinejensen)
-- [Christian O'Neill](https://github.com/Brother-Blue)
-- [Hjalmar Thunberg](https://github.com/Hjalmar-Thunberg)
-- [Hugo Hempel](https://github.com/HugoHempel)
-- [Linus Ivarsson](https://github.com/linusivarssons)
-- [Linus Åberg](https://github.com/LinusAaberg)
+### How to run
+1. Navigate to the Client folder in the repository
+1. Open terminal and run "npm install"
+1. Run "npm run serve"
+1. The BookingGUI is now running on port 8080
+1. Open a browser and enter http://localhost:8080/
