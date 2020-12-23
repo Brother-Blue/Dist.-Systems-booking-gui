@@ -6,4 +6,7 @@ Clicking the "Book a time"-button on the homepage will redirect the user to an o
 
 Via the pins on the map or the "Go to the office"-button on the Offices-page, one can go to the Booking-page where a calender is shown as well as a booking-form. By clicking a date on the calender all available timeslots for that day will be displayed. When information has been entered into all fields a user can submit the booking request. A message will be shown to the user depending whether the appointment booking was succefull or not. 
 
+# Communication
 All communication between the BookingGUI and the rest of the system is done via a broker, using the MQTT-protocol applying a Publish/Subscribe architectural style. 
+
+#
