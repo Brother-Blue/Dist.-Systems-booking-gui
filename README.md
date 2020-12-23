@@ -1,3 +1,5 @@
+## BookingGUI High-level description 
+
 The BookingGUI conists of three views each with its own responsibility. The Homepage displays a navigable map where all dentist offices are shown as pins. The pins change color indicating available timeslots at each dentist registry for the date specified by the user. 
 
 Clicking the "Book a time"-button on the homepage will redirect the user to an overview of all the dentist offices. This page displays all relevant information about the dentist offices. 
