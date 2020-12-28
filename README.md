@@ -15,8 +15,8 @@ All communication between the BookingGUI and the rest of the system is done via 
 1. Install MQTT-broker
     1. Download the Mosquitto MQTT-broker from [here](https://mosquitto.org/)
     1. Locate and open the Mosquitto configuration file (mosquitto.conf)
-    1. Add "#Websockets
-            listener 9001
+    1. Add "#Websockets  
+            listener 9001  
             protocol websockets"
     1. Restart the broker
 1. Navigate to the Client folder in the repository
