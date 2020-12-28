@@ -2,7 +2,7 @@
 
 The BookingGUI conists of three views each with its own responsibility. 
 
-The Home-page displays a navigable map where all dentist offices are shown as pins. The pins change color indicating available timeslots at each dentist registry for the date specified by the user. 
+The Home-page displays a navigable map where all dentist offices are shown as pins. The pins change color indicating available timeslots at each dentist office for the date specified by the user. 
 
 The Offices-page gives an overview of all dentistoffices in the system. Here all information about the dentistoffice is displayed.
 
