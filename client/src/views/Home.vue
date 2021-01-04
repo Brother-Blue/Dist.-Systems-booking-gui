@@ -104,7 +104,7 @@ export default {
 
 #book {
   border-radius: 30px;
-  margin-top: 2.25em;
+  margin-top: 1.75em;
   padding: 18px 50px;
   background-color: #e98d58;
   border: #e98d58;
@@ -121,7 +121,7 @@ p {
 }
 
 #or {
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-size: 20px;
 }
 
