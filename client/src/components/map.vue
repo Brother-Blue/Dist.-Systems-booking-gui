@@ -372,7 +372,6 @@ export default {
       min: minDate,
       max: maxDate,
       timeslotDay: "",
-      office: 0,
       lowOffices: [],
       medOffices: [],
       highOffices: [],
@@ -422,7 +421,6 @@ export default {
     },
     showTimeslots() {
       this.infoWinOpen = false;
-      this.office = 0;
       // Collect timeslots for all offices
       for (let i = 0; i < this.offices.length; i++) {
         this.offices[i].availibilty = 0;
@@ -437,12 +435,18 @@ export default {
         );
       }
     },
-    parseOffices(office) {
+    parseOffices(data) {
       // Parse offices depending on amount of availabile times
-      if (office.availibilty <= 0) this.lowOffices.push(office);
-      else if (office.availibilty <= 5) this.medOffices.push(office);
-      else this.highOffices.push(office);
-    },
+      for ( let i = 0 ; i < this.offices.length ; i++) {
+        if (this.offices[i].id == JSON.parse(data).id) {
+          this.offices[i].availibilty = JSON.parse(data).timeSlots.length;
+
+          if (this.offices[i].availibilty <= 0) this.lowOffices.push(this.offices[i]);
+          else if (this.offices[i].availibilty <= 5) this.medOffices.push(this.offices[i]);
+          else this.highOffices.push(this.offices[i]);
+        }
+      }
+    }
   },
   mounted() {
     this.$mqtt.subscribe("dentistimo/dentists/offices/timeslots");
@@ -457,9 +461,7 @@ export default {
     },
     "dentistimo/dentists/offices/timeslots"(data) {
       // Catch and store timeslots for dentistoffice
-      this.offices[this.office].availibilty = JSON.parse(data).length;
-      this.parseOffices(this.offices[this.office]);
-      this.office++;
+      this.parseOffices(data);
     },
     "dentistimo/appointments/response"(data) {
       this.response = JSON.parse(data);
