@@ -480,6 +480,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 600px){
+  #calendar_over_map{
+    display: none;
+  }
+}
+
 #calendar_over_map {
   position: fixed;
   bottom: 25px;
