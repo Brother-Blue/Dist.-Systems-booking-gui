@@ -19,7 +19,7 @@
     <GmapMap
       ref="mapRef"
       :center="centerLocation"
-      style="height:55%; width:100%; position:fixed; bottom: 0; z-index: -1"
+      style="height:52%; width:100%; position:fixed; bottom: 0; z-index: -1"
       :zoom="zoom"
       :options="{
         zoomControl: true,
@@ -480,6 +480,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 600px){
+  #calendar_over_map{
+    display: none;
+  }
+}
+
 #calendar_over_map {
   position: fixed;
   bottom: 25px;

@@ -73,13 +73,16 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap");
 
-#home {
-  font-family: serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@media screen and (max-width: 600px){
+  #or {
+    display: none;
+  }
+  #find {
+    display: none;
+  }
+  #book {
+    margin-top: 1em;
+  }
 }
 
 #available {
@@ -104,7 +107,7 @@ export default {
 
 #book {
   border-radius: 30px;
-  margin-top: 2.25em;
+  margin-top: 1em;
   padding: 18px 50px;
   background-color: #e98d58;
   border: #e98d58;
@@ -121,7 +124,7 @@ p {
 }
 
 #or {
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-size: 20px;
 }
 
@@ -135,4 +138,13 @@ p {
   margin-right: auto;
   margin-left: auto;
 }
+
+#home {
+  font-family: serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
 </style>
