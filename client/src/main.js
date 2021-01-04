@@ -19,7 +19,7 @@ Vue.use(VueMqtt, "ws://localhost:9001/ws", {
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyACwSQoJfqy-dJ5rbYmiKOdqYFu8-k8S0Y", // TODO: put in env file
+    key: "AIzaSyC2GvXcT4KK8K4eB0sE6Td57AUV9OLi4-4", // TODO: put in env file
     libraries: "places",
   },
   installComponent: true,
