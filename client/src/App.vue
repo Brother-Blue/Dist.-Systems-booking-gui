@@ -45,21 +45,4 @@ export default {
   color: #e98d58;
 }
 
-@media (max-width: 600px) {
-  #large-screen {
-    display: none;
-  }
-  #small-screen {
-    display: inline;
-  }
-}
-
-@media (min-width: 600px) {
-  #large-screen {
-    display: inline;
-  }
-  #small-screen {
-    display: none;
-  }
-}
 </style>
