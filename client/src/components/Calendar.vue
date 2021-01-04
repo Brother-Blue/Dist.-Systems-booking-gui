@@ -120,7 +120,7 @@ export default {
       }
     },
     "dentistimo/dentists/offices/timeslots"(data) {
-      let jsonData = JSON.parse(data);
+      let jsonData = JSON.parse(data).timeSlots;
       if (jsonData != null) {
         this.timeslots = jsonData;
       } else {
