@@ -52,6 +52,7 @@ export default {
     });
   },
   mqtt: {
+    // Retrieves the data of all dentist offices.
     "dentistimo/dentists"(data) {
       var jsonData = JSON.parse(data);
       if (jsonData != null) {

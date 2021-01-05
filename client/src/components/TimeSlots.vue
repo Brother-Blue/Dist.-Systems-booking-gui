@@ -145,6 +145,7 @@ export default {
     this.$mqtt.subscribe("dentistimo/appointments/response");
   },
   mqtt: {
+    // Gets the response from the appointment that was made by a user
     "dentistimo/appointments/response"(data) {
       let jsonData = JSON.parse(data);
       if (jsonData != null) {
